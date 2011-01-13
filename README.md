@@ -19,9 +19,3 @@ Find a checkin:
 Find a venue:
 
     foursquare.venues.find("VENUE_ID")
-
-## Users
-
-    user = foursquare.users.find("USER_ID")
-    user.checkins
-    user.
