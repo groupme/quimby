@@ -44,6 +44,18 @@ module Foursquare
       @json["contact"]
     end
 
+    def email
+      contact["email"]
+    end
+
+    def twitter
+      contact["twitter"]
+    end
+
+    def phone_number
+      contact["phone"]
+    end
+
     def badge_count
       @json["badges"]["count"]
     end
@@ -59,6 +71,14 @@ module Foursquare
     def last_checkin
       item = @json["checkins"]["items"].last
       Foursquare::Checkin.new(@foursquare, item)
+    end
+
+    def checkins_here
+      checkin_json = @foursquare.get("venues/#{last_checkin.venue.id}/herenow")
+      checkin_json["hereNow"]["items"].map do |json|
+        checkin = @foursquare.get("checkins/#{json["id"]}")["checkin"]
+        Foursquare::Checkin.new(@foursquare, checkin)
+      end
     end
   end
 end
