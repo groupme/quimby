@@ -6,7 +6,7 @@ It's a Foursquare API wrapper.
 
 Get a foursquare:
 
-    foursquare = Foursquare.new("ACCESS_TOKEN")
+    foursquare = Foursquare::Base.new("ACCESS_TOKEN")
 
 Find a user:
 
