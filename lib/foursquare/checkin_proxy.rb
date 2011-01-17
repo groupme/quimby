@@ -13,5 +13,11 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, json)
       end
     end
+
+    def all(options={})
+      @foursquare.get("users/self/checkins", options)["checkins"]["items"].map do |json|
+        Foursquare::Checkin.new(@foursquare, json)
+      end
+    end
   end
 end
