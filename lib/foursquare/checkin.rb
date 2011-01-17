@@ -8,6 +8,11 @@ module Foursquare
       @json["id"]
     end
 
+    def fetch
+      @json = @foursquare.get("checkins/#{id}")["checkin"]
+      self
+    end
+
     def shout
       @json["shout"]
     end
@@ -25,6 +30,8 @@ module Foursquare
     end
 
     def user(full=false)
+      fetch unless @json["user"]
+
       if full
         @foursquare.users.find(@json["user"]["id"])
       else
