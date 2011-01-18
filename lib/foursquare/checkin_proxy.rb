@@ -8,8 +8,8 @@ module Foursquare
       Foursquare::Checkin.new(@foursquare, @foursquare.get("checkins/#{id}")["checkin"])
     end
 
-    def recent
-      @foursquare.get("checkins/recent")["recent"].map do |json|
+    def recent(options={})
+      @foursquare.get("checkins/recent", options)["recent"].map do |json|
         Foursquare::Checkin.new(@foursquare, json)
       end
     end
