@@ -86,10 +86,11 @@ module Foursquare
 
     def checkins_here
       checkin_json = @foursquare.get("venues/#{last_checkin.venue.id}/herenow")
-      checkin_json["hereNow"]["items"].map do |json|
-        checkin = @foursquare.get("checkins/#{json["id"]}")["checkin"]
+      checkin_json["hereNow"]["items"].map do |item|
+        next unless json = @foursquare.get("checkins/#{item["id"]}")
+        checkin = json["checkin"]
         Foursquare::Checkin.new(@foursquare, checkin)
-      end
+      end.compact
     end
 
     def friends
