@@ -21,7 +21,7 @@ module Foursquare
     def get(path, params={})
       params.merge!(:oauth_token => @access_token)
       response = JSON.parse(Typhoeus::Request.get(API + path, :params => params).body)
-      response["meta"]["code"] == 200 ? response["response"] : error(response)
+      response["meta"]["errorType"] ? error(response) : response["response"]
     end
 
     private
