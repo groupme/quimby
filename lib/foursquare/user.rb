@@ -4,6 +4,11 @@ module Foursquare
       @foursquare, @json = foursquare, json
     end
 
+    def fetch
+      @json = @foursquare.get("users/#{id}")["user"]
+      self
+    end
+
     def id
       @json["id"]
     end
@@ -37,10 +42,12 @@ module Foursquare
     end
 
     def pings
+      fetch unless @json.has_key?("pings")
       @json["pings"]
     end
 
     def contact
+      fetch unless @json.has_key?("contact")
       @json["contact"]
     end
 
@@ -57,18 +64,22 @@ module Foursquare
     end
 
     def badge_count
+      fetch unless @json.has_key?("badges")
       @json["badges"]["count"]
     end
 
     def mayorships
+      fetch unless @json.has_key?("mayorships")
       @json["mayorships"]["items"]
     end
 
     def checkin_count
+      fetch unless @json.has_key?("checkins")
       @json["checkins"]["count"]
     end
 
     def last_checkin
+      fetch unless @json.has_key?("checkins")
       item = @json["checkins"]["items"].last
       Foursquare::Checkin.new(@foursquare, item)
     end
@@ -78,6 +89,12 @@ module Foursquare
       checkin_json["hereNow"]["items"].map do |json|
         checkin = @foursquare.get("checkins/#{json["id"]}")["checkin"]
         Foursquare::Checkin.new(@foursquare, checkin)
+      end
+    end
+
+    def friends
+      @foursquare.get("users/#{id}/friends")["friends"]["items"].map do |item|
+        Foursquare::User.new(@foursquare, item)
       end
     end
   end
