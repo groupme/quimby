@@ -23,7 +23,8 @@ module Foursquare
   end
 
   def self.log(msg)
-    puts msg if verbose?
+    return unless verbose?
+    puts "[foursquare] #{msg}"
   end
 
   ERRORS = {
