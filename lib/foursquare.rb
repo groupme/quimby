@@ -14,6 +14,18 @@ require "foursquare/venue"
 module Foursquare
   class Error < StandardError ; end
 
+  def self.verbose=(setting)
+    @verbose = setting
+  end
+
+  def self.verbose?
+    @verbose
+  end
+
+  def self.log(msg)
+    puts msg if verbose?
+  end
+
   ERRORS = {
     "invalid_auth" => "OAuth token was not provided or was invalid.",
     "param_error" => "A required parameter was missing or a parameter was malformed. This is also used if the resource ID in the path is incorrect.",
