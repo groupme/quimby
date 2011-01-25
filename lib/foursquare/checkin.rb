@@ -13,6 +13,14 @@ module Foursquare
       self
     end
 
+    def type
+      @json["type"]
+    end
+
+    def shout?
+      type == "shout"
+    end
+
     def shout
       @json["shout"]
     end
