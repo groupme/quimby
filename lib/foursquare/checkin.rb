@@ -21,6 +21,10 @@ module Foursquare
       type == "shout"
     end
 
+    def created_at
+      Time.at(@json["createdAt"].to_i)
+    end
+
     def shout
       @json["shout"]
     end
