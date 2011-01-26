@@ -27,6 +27,18 @@ module Foursquare
       response["meta"]["errorType"] ? error(response) : response["response"]
     end
 
+    def post(path, params={})
+      params = params.inject({}) { |o, (k, v)|
+        o[k.to_s.gsub(/(_[a-z])/) { |m| m[1..1].upcase }] = v
+        o
+      } # Camelize them params.
+      Foursquare.log("POST #{API + path}")
+      params.merge!(:oauth_token => @access_token)
+      response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
+      Foursquare.log(response.inspect)
+      response["meta"]["errorType"] ? error(response) : response["response"]
+    end
+
     private
 
     def error(response)

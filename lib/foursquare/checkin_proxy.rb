@@ -19,5 +19,13 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, json)
       end
     end
+
+    def create(options={})
+      if json = @foursquare.post("checkins/add", options)
+        Foursquare::Checkin.new(@foursquare, json["checkin"])
+      else
+        nil
+      end
+    end
   end
 end
