@@ -27,3 +27,9 @@ If you want to see what's going on up in there, you can set `Foursquare.verbose`
     Foursquare.verbose = true
 
 Right now it'll log to `STDOUT`. Maybe I'll add nicer logging later. If you're lucky.
+
+## TODO
+
+* Creating checkins works, but it should really return notifications. Also, if the
+  checkin can't be created, it should return errors.
+* I don't know, so much other stuff.
