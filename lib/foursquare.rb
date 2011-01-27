@@ -10,6 +10,7 @@ require "foursquare/user_proxy"
 require "foursquare/user"
 require "foursquare/venue_proxy"
 require "foursquare/venue"
+require "foursquare/settings"
 
 module Foursquare
   class Error < StandardError ; end

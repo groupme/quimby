@@ -18,6 +18,10 @@ module Foursquare
       Foursquare::VenueProxy.new(self)
     end
 
+    def settings
+      @settings ||= Foursquare::Settings.new(self)
+    end
+
     def get(path, params={})
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
