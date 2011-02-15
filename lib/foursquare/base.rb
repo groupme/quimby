@@ -35,6 +35,7 @@ module Foursquare
     def post(path, params={})
       params = camelize(params)
       Foursquare.log("POST #{API + path}")
+      Foursquare.log("PARAMS: #{params.inspect}")
       params.merge!(:oauth_token => @access_token)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
       Foursquare.log(response.inspect)
