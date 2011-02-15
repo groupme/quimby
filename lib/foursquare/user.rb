@@ -97,8 +97,8 @@ module Foursquare
       end.compact
     end
 
-    def friends
-      @foursquare.get("users/#{id}/friends")["friends"]["items"].map do |item|
+    def friends(options={})
+      @foursquare.get("users/#{id}/friends", options)["friends"]["items"].map do |item|
         Foursquare::User.new(@foursquare, item)
       end
     end
