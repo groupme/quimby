@@ -27,5 +27,6 @@ module Foursquare
         nil
       end
     end
+    alias_method :add, :create
   end
 end
