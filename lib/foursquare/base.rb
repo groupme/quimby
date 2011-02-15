@@ -23,6 +23,7 @@ module Foursquare
     end
 
     def get(path, params={})
+      params = camelize(params)
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       params.merge!(:oauth_token => @access_token)
@@ -32,10 +33,7 @@ module Foursquare
     end
 
     def post(path, params={})
-      params = params.inject({}) { |o, (k, v)|
-        o[k.to_s.gsub(/(_[a-z])/) { |m| m[1..1].upcase }] = v
-        o
-      } # Camelize them params.
+      params = camelize(params)
       Foursquare.log("POST #{API + path}")
       params.merge!(:oauth_token => @access_token)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
@@ -44,6 +42,13 @@ module Foursquare
     end
 
     private
+
+    def camelize(params)
+      params.inject({}) { |o, (k, v)|
+        o[k.to_s.gsub(/(_[a-z])/) { |m| m[1..1].upcase }] = v
+        o
+      }
+    end
 
     def error(response)
       raise Foursquare::Error.new(Foursquare::ERRORS[response['meta']['errorType']])
