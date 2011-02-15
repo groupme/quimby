@@ -55,8 +55,6 @@ You can also search venues:
 The `:ll` option is required for venue searches. You can also feel free to pass any of the other
 available Foursquare API options, as specified in the docs.
 
-
-
 ### Logging
 
 If you want to see what's going on up in there, you can set `Foursquare.verbose` to `true`
