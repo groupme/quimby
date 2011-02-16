@@ -8,7 +8,21 @@ Gem::Specification.new do |s|
   s.authors = ["Pat Nakajima"]
   s.date = %q{2011-01-14}
   s.email = %q{pat@groupme.com}
-  s.files = ["README.md", "lib/foursquare.rb", "lib/foursquare/base.rb", "lib/foursquare/settings.rb", "lib/foursquare/checkin.rb", "lib/foursquare/checkin_proxy.rb", "lib/foursquare/user.rb", "lib/foursquare/user_proxy.rb", "lib/foursquare/venue.rb", "lib/foursquare/venue_proxy.rb", "spec/THERE_ARENT_ANY", "test.rb"]
+  s.files = [
+    "README.md",
+    "lib/foursquare.rb",
+    "lib/foursquare/base.rb",
+    "lib/foursquare/settings.rb",
+    "lib/foursquare/tip.rb",
+    "lib/foursquare/checkin.rb",
+    "lib/foursquare/photo.rb",
+    "lib/foursquare/checkin_proxy.rb",
+    "lib/foursquare/user.rb",
+    "lib/foursquare/user_proxy.rb",
+    "lib/foursquare/venue.rb",
+    "lib/foursquare/venue_proxy.rb",
+    "spec/THERE_ARENT_ANY",
+  ]
   s.homepage = %q{https://github.com/groupme/john-mayer}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
