@@ -3,7 +3,9 @@ $LOAD_PATH << File.dirname(__FILE__)
 require "rubygems"
 require "typhoeus"
 require "json"
+require "cgi"
 require "foursquare/base"
+require "foursquare/multi"
 require "foursquare/checkin_proxy"
 require "foursquare/checkin"
 require "foursquare/user_proxy"
@@ -11,6 +13,8 @@ require "foursquare/user"
 require "foursquare/venue_proxy"
 require "foursquare/venue"
 require "foursquare/settings"
+require "foursquare/tip"
+require "foursquare/photo"
 
 module Foursquare
   class Error < StandardError ; end

@@ -29,7 +29,7 @@ module Foursquare
       params.merge!(:oauth_token => @access_token)
       response = JSON.parse(Typhoeus::Request.get(API + path, :params => params).body)
       Foursquare.log(response.inspect)
-      response["meta"]["errorType"] ? error(response) : response["response"]
+      error(response) || response["response"]
     end
 
     def post(path, params={})
@@ -39,7 +39,7 @@ module Foursquare
       params.merge!(:oauth_token => @access_token)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
       Foursquare.log(response.inspect)
-      response["meta"]["errorType"] ? error(response) : response["response"]
+      error(response) || response["response"]
     end
 
     private
@@ -52,7 +52,15 @@ module Foursquare
     end
 
     def error(response)
-      raise Foursquare::Error.new(Foursquare::ERRORS[response['meta']['errorType']])
+      case response["meta"]["errorType"]
+      when nil
+        # It's all good.
+      when "deprecated"
+        Foursquare.log(Foursquare::ERRORS[response['meta']['errorType']])
+        nil
+      else
+        raise Foursquare::Error.new(Foursquare::ERRORS[response['meta']['errorType']])
+      end
     end
   end
 end

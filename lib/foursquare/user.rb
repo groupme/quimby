@@ -102,5 +102,11 @@ module Foursquare
         Foursquare::User.new(@foursquare, item)
       end
     end
+
+    def tips(options={})
+      @foursquare.get("users/#{id}/tips", options)["tips"]["items"].map do |item|
+        Foursquare::Tip.new(@foursquare, item)
+      end
+    end
   end
 end
