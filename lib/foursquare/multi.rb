@@ -1,3 +1,11 @@
+# Here's how I want this to work:
+#
+#   users, venues = foursquare.multi do |request|
+#     request.users.search :twitter => "nakajima"
+#     request.venues.search :ll => "12,-71"
+#   end
+#
+# It's just difficult to implement. So it's not implemented yet.
 module Foursquare
   class Multi
     def initialize(foursquare, block)
