@@ -80,6 +80,7 @@ module Foursquare
 
     def last_checkin
       fetch unless @json.has_key?("checkins")
+      return unless @json["checkins"]["items"]
       item = @json["checkins"]["items"].last
       Foursquare::Checkin.new(@foursquare, item)
     end
