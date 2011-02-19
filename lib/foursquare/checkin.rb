@@ -1,5 +1,7 @@
 module Foursquare
   class Checkin
+    attr_reader :json
+
     def initialize(foursquare, json)
       @foursquare, @json = foursquare, json
     end
