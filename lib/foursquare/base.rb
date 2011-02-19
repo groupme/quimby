@@ -2,8 +2,15 @@ module Foursquare
   class Base
     API = "https://api.foursquare.com/v2/"
 
-    def initialize(access_token)
-      @access_token = access_token
+    def initialize(*args)
+      case args.size
+      when 1
+        @access_token = args.first
+      when 2
+        @client_id, @client_secret = args
+      else
+        raise ArgumentError, "You need to pass either an access_token or client_id and client_secret"
+      end
     end
 
     def users
@@ -26,7 +33,7 @@ module Foursquare
       params = camelize(params)
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
-      params.merge!(:oauth_token => @access_token)
+      merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.get(API + path, :params => params).body)
       Foursquare.log(response.inspect)
       error(response) || response["response"]
@@ -36,7 +43,7 @@ module Foursquare
       params = camelize(params)
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
-      params.merge!(:oauth_token => @access_token)
+      merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
       Foursquare.log(response.inspect)
       error(response) || response["response"]
@@ -60,6 +67,14 @@ module Foursquare
         nil
       else
         raise Foursquare::Error.new(Foursquare::ERRORS[response['meta']['errorType']])
+      end
+    end
+
+    def merge_auth_params(params)
+      if @access_token
+        params.merge!(:oauth_token => @access_token)
+      else
+        params.merge!(:client_id => @client_id, :client_secret => @client_secret)
       end
     end
   end
