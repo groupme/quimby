@@ -2,8 +2,13 @@ module Foursquare
   class Base
     API = "https://api.foursquare.com/v2/"
 
-    def initialize(access_token)
-      @access_token = access_token
+    def initialize(params)
+      if (params[:access_token])
+        @access_token = access_token
+      elsif (params[:client_id] && params[:client_secret])
+        @client_id = params[:client_id]
+        @client_secret = params[:client_secret]
+      end
     end
 
     def users
@@ -26,7 +31,11 @@ module Foursquare
       params = camelize(params)
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
-      params.merge!(:oauth_token => @access_token)
+      if (@access_token)
+        params.merge!(:oauth_token => @access_token)
+      elsif (@client_id && @client_secret)
+        params.merge!(:client_id => @client_id, :client_secret => @client_secret)
+      end
       response = JSON.parse(Typhoeus::Request.get(API + path, :params => params).body)
       Foursquare.log(response.inspect)
       error(response) || response["response"]
@@ -36,7 +45,11 @@ module Foursquare
       params = camelize(params)
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
-      params.merge!(:oauth_token => @access_token)
+      if (@access_token)
+        params.merge!(:oauth_token => @access_token)
+      elsif (@client_id && @client_secret)
+        params.merge!(:client_id => @client_id, :client_secret => @client_secret)
+      end
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
       Foursquare.log(response.inspect)
       error(response) || response["response"]
