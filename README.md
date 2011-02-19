@@ -9,6 +9,10 @@ Get a foursquare:
 
     foursquare = Foursquare::Base.new("ACCESS_TOKEN")
 
+You can also user `client_id` and `client_secret`
+
+    foursquare = Foursquare::Base.new("CLIENT_ID", "CLIENT_SECRET")
+
 ### Users
 
 Find a user:
