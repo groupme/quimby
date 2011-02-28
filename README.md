@@ -1,7 +1,8 @@
-# John Mayer
+# Quimby
 
-It's a Foursquare API wrapper, designed to "just work", just like all of John Mayer's hooks and
-sweet guitar licks. It uses objects instead of hashes, and tries to be smart about when to load things.
+### Formerly named after a pop star whose lawyers decided they didn't like us using his name.
+
+It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to be smart about when to load things. 
 
 ## Usage
 
@@ -26,7 +27,7 @@ versions of the attributes returned in the JSON.** Now let's accidentally that u
     user.friends
 
 This will return an array of `Foursquare::User` objects. Don't worry about the fact that they're
-populated by limited JSON. John Mayer will fetch the extra JSON if you need it. For example:
+populated by limited JSON. Quimby will fetch the extra JSON if you need it. For example:
 
     friend = user.friends.first
     friend.name # Will not trigger a network call, since we already have it

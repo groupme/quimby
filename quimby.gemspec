@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{john-mayer}
+  s.name = %q{quimby}
   s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     "lib/foursquare/venue_proxy.rb",
     "spec/THERE_ARENT_ANY",
   ]
-  s.homepage = %q{https://github.com/groupme/john-mayer}
+  s.homepage = %q{https://github.com/groupme/quimby}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A Foursquare API wrapper}
