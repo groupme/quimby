@@ -17,6 +17,7 @@ require "foursquare/photo"
 
 module Foursquare
   class Error < StandardError ; end
+  class ServiceUnavailable < StandardError; end
 
   def self.verbose=(setting)
     @verbose = setting
