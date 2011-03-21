@@ -66,7 +66,13 @@ module Foursquare
         Foursquare.log(Foursquare::ERRORS[response['meta']['errorType']])
         nil
       else
-        raise Foursquare::Error.new(Foursquare::ERRORS[response['meta']['errorType']])
+        error_type = response['meta']['errorType']
+        case error_type
+        when "server_error"
+          raise Foursquare::ServiceUnavailable.new(Foursquare::ERRORS[error_type])
+        else
+          raise Foursquare::Error.new(Foursquare::ERRORS[error_type])
+        end
       end
     end
 
