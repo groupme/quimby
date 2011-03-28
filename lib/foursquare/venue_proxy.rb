@@ -15,6 +15,7 @@ module Foursquare
         venues[group["type"]] << group["items"].map do |json|
           Foursquare::Venue.new(@foursquare, json)
         end
+        venues
       end
     end
 
