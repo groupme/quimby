@@ -12,7 +12,7 @@ module Foursquare
       raise ArgumentError, "You must include :ll" unless options[:ll]
       response = @foursquare.get('venues/search', options)["groups"].inject({}) do |venues, group|
         venues[group["type"]] ||= []
-        venues[group["type"]] << group["items"].map do |json|
+        venues[group["type"]] += group["items"].map do |json|
           Foursquare::Venue.new(@foursquare, json)
         end
         venues
