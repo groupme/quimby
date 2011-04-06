@@ -13,6 +13,28 @@ Get a foursquare:
 You can also user `client_id` and `client_secret`
 
     foursquare = Foursquare::Base.new("CLIENT_ID", "CLIENT_SECRET")
+    
+### Authentication
+
+First, you need to [register your application](https://foursquare.com/oauth).
+
+#### Web server application
+
+Get a foursquare with your `client_id` and `client_secret`
+
+    foursquare = Foursquare::Base.new("CLIENT_ID", "CLIENT_SECRET")
+  
+Redirect users to the Foursquare authentication page. You need to pass your `callback_url`. Get the url to redirect to with:
+
+    foursquare.authorize_url("CALLBACK_SESSION_URL")
+  
+Then Foursquare will redirect the user to your callback url with a code parameter in the url. Exchange this code for an access token using:
+
+    access_token = foursquare.access_token(params["code"], "CALLBACK_SESSION_URL")
+    
+Now you can get a foursquare using only an access token and make requests on user's behalf:
+
+    foursquare = Foursquare::Base.new("ACCESS_TOKEN")
 
 ### Users
 
