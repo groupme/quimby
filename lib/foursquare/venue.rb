@@ -19,7 +19,7 @@ module Foursquare
     end
 
     def location
-      @json["location"]
+      Foursquare::Location.new(@json["location"])
     end
 
     def categories

@@ -82,6 +82,19 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, item)
       end
     end
+    
+    def all_checkins
+      count = 250
+      offset = 0
+      array = []
+      while count == 250
+        checkins = checkins(:limit => count, :offset => offset)
+        array += checkins
+        count = checkins.count
+        offset = offset + count
+      end
+      array
+    end
 
     def checkin_count
       fetch unless @json.has_key?("checkins")

@@ -64,6 +64,10 @@ But wait, Foursquare isn't just users! It's checkins too! So let's find some che
 Now we have an array of `Foursquare::Checkin` objects. We can also grab a specific checkin:
 
     checkin = foursquare.checkins.find("CHECKIN_ID")
+    
+You also have a convenient method if you want to get all the user checkins:
+
+    user.all_checkins
 
 ### Venues
 
