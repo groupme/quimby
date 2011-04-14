@@ -74,6 +74,14 @@ module Foursquare
       fetch unless @json.has_key?("mayorships")
       @json["mayorships"]["items"]
     end
+    
+    # https://developer.foursquare.com/docs/users/checkins.html
+    # https://developer.foursquare.com/docs/explore.html#req=users/self/checkins
+    def checkins(options={})
+      @foursquare.get("users/#{id}/checkins", options)["checkins"]["items"].map do |item|
+        Foursquare::Checkin.new(@foursquare, item)
+      end
+    end
 
     def checkin_count
       fetch unless @json.has_key?("checkins")
