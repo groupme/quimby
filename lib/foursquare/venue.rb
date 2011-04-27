@@ -41,6 +41,10 @@ module Foursquare
     def todos_count
       @json["todos"]["count"]
     end
+    
+    def stats
+      @json["stats"]
+    end
 
     def photos(options={:group => "checkin"})
       @foursquare.get("venues/#{id}/photos", options)["photos"]["items"].map do |item|
