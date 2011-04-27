@@ -3,6 +3,11 @@
 module Foursquare
   class Location
     
+    # this enabled the previous app to work with this new version where Location is now an object
+    def [](key)
+      @json[key]
+    end
+    
     def initialize(json)
       @json = json
     end
