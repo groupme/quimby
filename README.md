@@ -4,6 +4,12 @@
 
 It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to be smart about when to load things. 
 
+## Installation
+
+Install it as a gem (in your `Gemfile`)
+
+    gem "quimby", :require => 'foursquare'
+
 ## Usage
 
 Get a foursquare:
