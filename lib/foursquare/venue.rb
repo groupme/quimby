@@ -23,7 +23,7 @@ module Foursquare
     end
 
     def categories
-      @json["categories"]
+      @categories ||= @json["categories"].map { |hash| Foursquare::Category.new(hash) }
     end
 
     def verified?
@@ -44,6 +44,16 @@ module Foursquare
     
     def stats
       @json["stats"]
+    end
+    
+    def primary_category
+      return nil if categories.blank?
+      @primary_category ||= categories.select { |category| category.primary? }.try(:first)
+    end
+    
+    # return the url to the icon of the primary category
+    def icon
+      primary_category ? primary_category["icon"] : "https://foursquare.com/img/categories/none.png"
     end
 
     def photos(options={:group => "checkin"})
