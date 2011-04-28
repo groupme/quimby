@@ -52,14 +52,30 @@ module Foursquare
     end
     
     # return the url to the icon of the primary category
+    # if no primary is available, then return a default icon
     def icon
       primary_category ? primary_category["icon"] : "https://foursquare.com/img/categories/none.png"
     end
-
-    def photos(options={:group => "checkin"})
+    
+    def photos_count
+      @json["photos"]["count"]
+    end
+    
+    # not all photos may be present here (but we try to avoid one extra API call)
+    # if you want to get all the photos, try all_photos
+    def photos
+      return all_photos if @json["photos"].blank?
+      @json["photos"]["groups"].select { |g| g["type"] == "venue" }.first["items"].map do |item|
+        Foursquare::Photo.new(@foursquare, item)
+      end
+    end
+    
+    # https://developer.foursquare.com/docs/venues/photos.html
+    def all_photos(options={:group => "venue"})
       @foursquare.get("venues/#{id}/photos", options)["photos"]["items"].map do |item|
         Foursquare::Photo.new(@foursquare, item)
       end
     end
+    
   end
 end
