@@ -1,7 +1,7 @@
 module Foursquare
   class Category
     
-    # this enabled the previous app to work with this new version where Location is now an object
+    # this enabled the previous app to work with this new version where Category is now an object
     def [](key)
       @json[key]
     end
