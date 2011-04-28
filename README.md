@@ -8,7 +8,7 @@ It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to b
 
 Install it as a gem (in your `Gemfile`)
 
-    gem "quimby", :require => 'foursquare'
+    gem "quimby"
 
 ## Usage
 
