@@ -115,6 +115,8 @@ module Foursquare
       else
         error_type = response['meta']['errorType']
         case error_type
+        when "invalid_auth"
+          raise Foursquare::InvalidAuth.new(Foursquare::ERRORS[error_type])
         when "server_error"
           raise Foursquare::ServiceUnavailable.new(Foursquare::ERRORS[error_type])
         else

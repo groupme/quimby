@@ -19,6 +19,7 @@ require "foursquare/category"
 
 module Foursquare
   class Error < StandardError ; end
+  class InvalidAuth < Foursquare::Error; end
   class ServiceUnavailable < Foursquare::Error; end
 
   def self.verbose=(setting)
