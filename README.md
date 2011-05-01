@@ -12,6 +12,8 @@ Install it as a gem (in your `Gemfile`)
 
 ## Usage
 
+### For a good start, check out the example Rails app: [github.com/pierrevalade/foursquare-rails-examples](https://github.com/pierrevalade/foursquare-rails-examples)
+
 Get a foursquare:
 
     foursquare = Foursquare::Base.new("ACCESS_TOKEN")
