@@ -6,8 +6,10 @@ It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to b
 
 ## Installation
 
-Install it as a gem (in your `Gemfile`)
+Install it as a gem (in your `Gemfile`) and its dependencies:
 
+    gem "json"
+    gem "typhoeus"
     gem "quimby"
 
 ## Usage

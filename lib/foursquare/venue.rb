@@ -5,6 +5,11 @@ module Foursquare
     def initialize(foursquare, json)
       @foursquare, @json = foursquare, json
     end
+    
+    def fetch
+      @json = @foursquare.get("venues/#{id}")["venue"]
+      self
+    end
 
     def id
       @json["id"]
@@ -74,6 +79,21 @@ module Foursquare
     def all_photos(options={:group => "venue"})
       @foursquare.get("venues/#{id}/photos", options)["photos"]["items"].map do |item|
         Foursquare::Photo.new(@foursquare, item)
+      end
+    end
+    
+    # count the people who have checked-in at the venue in the last two hours
+    def here_now_count
+      fetch unless @json.has_key?("hereNow")
+      @json["hereNow"]["count"]
+    end
+    
+    # returns a list of checkins (only if a valid oauth token from a user is provided)
+    # https://developer.foursquare.com/docs/venues/herenow.html
+    # options: limit, offset, aftertimestamp
+    def here_now_checkins(options={:limit => "50"})
+      @foursquare.get("venues/#{id}/herenow", options)["hereNow"]["items"].map do |item|
+        Foursquare::Checkin.new(@foursquare, item)
       end
     end
     
