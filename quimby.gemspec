@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
     "lib/foursquare/tip.rb",
     "lib/foursquare/multi.rb",
     "lib/foursquare/checkin.rb",
+    "lib/foursquare/location.rb",
     "lib/foursquare/photo.rb",
     "lib/foursquare/checkin_proxy.rb",
     "lib/foursquare/user.rb",
