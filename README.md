@@ -51,7 +51,7 @@ Find a user:
     user = foursquare.users.find("USER_ID")
 
 Now we've got a `Foursquare::User` object. You can call sweet methods like `user.name` and even
-`user.last_checkin`. **In general, John Mayer's Foursquare object methods are just snake-cased
+`user.last_checkin`. **In general, Quimby's Foursquare object methods are just snake-cased
 versions of the attributes returned in the JSON.** Now let's accidentally that user's friends:
 
     user.friends
