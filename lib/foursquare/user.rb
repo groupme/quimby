@@ -60,6 +60,18 @@ module Foursquare
     def twitter
       contact["twitter"]
     end
+    
+    def facebook
+      contact["facebook"]
+    end
+    
+    def twitter?
+      !twitter.blank?
+    end
+    
+    def facebook?
+      !facebook.blank?
+    end
 
     def phone_number
       contact["phone"]
