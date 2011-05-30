@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{quimby}
-  s.version = "0.4.2"
+  s.version = "0.4.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pat Nakajima"]
@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
     "lib/foursquare/tip.rb",
     "lib/foursquare/multi.rb",
     "lib/foursquare/checkin.rb",
+    "lib/foursquare/category.rb",
     "lib/foursquare/location.rb",
     "lib/foursquare/photo.rb",
     "lib/foursquare/checkin_proxy.rb",
