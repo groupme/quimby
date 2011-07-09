@@ -139,6 +139,16 @@ module Foursquare
       end
     end
 
+    def unlocked_badges
+      self.badges.find_all{|badge| badge.unlocked}
+    end
+
+    def badges(options={})
+      @foursquare.get("users/#{id}/badges", options)["badges"].map do |item| 
+        Foursquare::Badge.new(@foursquare, item) 
+      end
+    end
+
     def tips(options={})
       @foursquare.get("users/#{id}/tips", options)["tips"]["items"].map do |item|
         Foursquare::Tip.new(@foursquare, item)
