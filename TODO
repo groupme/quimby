@@ -1,0 +1,7 @@
+* Add basic auth for Typhoeus
+* Cleanup date stamp in base
+* Inherit from base and clean up other classes
+* Venues search api has changed, groups are being deprecated, look into that.
+* Document vcr and config.yml for testing. 
+* And many more changes
+
