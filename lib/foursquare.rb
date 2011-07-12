@@ -7,6 +7,7 @@ require "cgi"
 require "foursquare/base"
 require "foursquare/api"
 require "foursquare/client"
+require "foursquare/configuration"
 require "foursquare/json_methods"
 require "foursquare/model_base"
 require "foursquare/checkin_proxy"
@@ -25,6 +26,14 @@ module Foursquare
   class Error < StandardError ; end
   class InvalidAuth < Foursquare::Error; end
   class ServiceUnavailable < Foursquare::Error; end
+
+  def self.configuration
+    @configuration ||= Foursquare::Configuration.new
+  end
+
+  def self.configure
+    yield configuration if block_given?
+  end
 
   def self.verbose=(setting)
     @verbose = setting
