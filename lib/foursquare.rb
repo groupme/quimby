@@ -27,6 +27,25 @@ module Foursquare
   class InvalidAuth < Foursquare::Error; end
   class ServiceUnavailable < Foursquare::Error; end
 
+  ENVIRONMENT = (ENV["FSQ_ENV"] || "production").freeze
+
+  class << self
+    # Alias for Foursquare::Client.new
+    def new(options={})
+      Foursquare::Client.new(options)
+    end
+
+    # Delegate to Foursquare::Client
+    def method_missing(method, *args, &block)
+      return super unless new.respond_to?(method)
+      new.send(method, *args, &block)
+    end
+
+    def respond_to?(method, include_private = false)
+      new.respond_to?(method, include_private) || super(method, include_private)
+    end
+  end
+
   def self.configuration
     @configuration ||= Foursquare::Configuration.new
   end
