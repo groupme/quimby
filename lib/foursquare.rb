@@ -1,9 +1,10 @@
 $LOAD_PATH << File.dirname(__FILE__)
 
 require "rubygems"
-require "typhoeus"
-require "json"
 require "cgi"
+require "json"
+require "typhoeus"
+require "yaml"
 require "foursquare/base"
 require "foursquare/api"
 require "foursquare/client"
@@ -52,6 +53,14 @@ module Foursquare
 
   def self.configure
     yield configuration if block_given?
+  end
+
+  def self.env=(env_name)
+    @env = env_name
+  end
+
+  def self.env
+    @env ||= ENVIRONMENT
   end
 
   def self.verbose=(setting)
