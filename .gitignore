@@ -1,3 +1,4 @@
-test.rb
-spec/config.yml
+config.yml
 fixtures
+spec/config.yml
+test.rb
