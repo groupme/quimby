@@ -7,4 +7,8 @@ RSpec.configure do |config|
   config.extend VCR::RSpec::Macros
 end
 
-APPCONFIG = YAML.load_file('spec/config.yml')
+ENVIRONMENT = ENV["FSQ_ENV"] || "production"
+CONFIG_PATH = File.join(File.dirname(__FILE__), "..")
+CONFIG_NAME = "config.yml"
+CONFIG_FILE = File.join(CONFIG_PATH, CONFIG_NAME)
+APPCONFIG = YAML.load_file(CONFIG_FILE)[ENVIRONMENT.to_sym]
