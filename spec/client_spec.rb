@@ -33,7 +33,7 @@ describe Foursquare::Client do
     it "contains well formed objects" do
       category_keys = ["name", "pluralName", "icon", "categories"]
       unique_keys = client.venue_categories.map {|c| c.keys}.uniq.flatten
-      unique_keys.should == category_keys
+      unique_keys.should =~ category_keys
     end
 
     it "gets the correct venue categories" do
