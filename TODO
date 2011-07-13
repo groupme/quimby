@@ -1,7 +1,17 @@
-* Add basic auth for Typhoeus
-* Cleanup date stamp in base
 * Inherit from base and clean up other classes
 * Venues search api has changed, groups are being deprecated, look into that.
 * Document vcr and config.yml for testing. 
-* And many more changes
+* Add support for the venue creation endpoint
+* Add support for the special creation endpoint
+* Consider implementing the following proposed interface for accessing objects:
+  # client.venues["permalink"]
+  # client.venues["id"] e.g. client.venues["118057"]
+* Add more TODOs
 
+# DONE
+* Cleanup date stamp in base
+  This behavior is now overridden in Foursquare::Client#valid_date_string
+* Add basic auth for Typhoeus
+  Basic auth credentials are now passed if they are present in the APPCONFIG
+* Move configuration logic into its own class
+  Adds an interface for configuring Foursquare module & Client instances
