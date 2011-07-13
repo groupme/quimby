@@ -16,7 +16,7 @@ module Foursquare
       response["categories"]
     end
 
-    def create_special(options={})
+    def create_special_from(options={})
       response = post("specials/add", options)
       response["special"]
     end
