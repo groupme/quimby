@@ -12,3 +12,8 @@ CONFIG_PATH = File.join(File.dirname(__FILE__), "..")
 CONFIG_NAME = "config.yml"
 CONFIG_FILE = File.join(CONFIG_PATH, CONFIG_NAME)
 APPCONFIG = YAML.load_file(CONFIG_FILE)[ENVIRONMENT.to_sym]
+
+def rrand(x)
+  rand(2*x) - x
+end
+
