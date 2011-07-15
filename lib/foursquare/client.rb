@@ -16,18 +16,31 @@ module Foursquare
       response["categories"]
     end
 
+    def create_venue_from(options={})
+      response = post("venues/add", options)
+      response["venue"]
+    end
+
     def create_special_from(options={})
       response = post("specials/add", options)
       response["special"]
     end
 
     private
+    # def log_response(response)
+    #   Foursquare.log(response)
+    #   # Foursquare.log("#{args.delete(:method)} #{args.delete(:request_uri)}")
+    #   # Foursquare.log("PARAMS: #{args.delete(:params).inspect}")
+    #   # Foursquare.log("RESPONSE: \n#{args.delete.(:response).inspect}\n")
+    # end
+
     def get(path, params={})
       params = camelize(params)
       request_uri = URI.parse(self.configuration.endpoint + path).to_s
       request_params = params_including_auth(request_uri, params)
       response_json = Typhoeus::Request.get(request_uri, request_params)
       response = JSON.parse(response_json.body)
+      # log_response(response)
       Foursquare.log("GET #{request_uri}")
       Foursquare.log("PARAMS: #{params.inspect}")
       Foursquare.log("RESPONSE: \n#{response.inspect}\n")
@@ -45,6 +58,12 @@ module Foursquare
       Foursquare.log("PARAMS: #{params.inspect}")
       Foursquare.log("RESPONSE: \n#{response.inspect}\n")
       error(response) || response["response"]
+    end
+
+    def error(response)
+      if response["meta"]["errorType"]
+        raise response["meta"]["errorDetail"]
+      end
     end
 
     def params_including_auth(request_uri, params)

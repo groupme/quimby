@@ -3,10 +3,6 @@ require 'spec_helper'
 VCR.eject_cassette
 VCR.turn_off!
 
-def rrand(x)
-  rand(2*x) - x
-end
-
 describe Foursquare::Client do
   let(:client) {Foursquare::Client.new}
 
@@ -47,7 +43,14 @@ describe Foursquare::Client do
     it "throws an error if the oauth token is expired" 
     # response body for expired token is:
     # #<Typhoeus::Response:0x000001028ba8c8 @app_connect_time=2.7e-05, @body=  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<unauthorized>TOKEN_EXPIRED</unauthorized>  \n  ", @code=401,
-    #
+    
+    it "throws an error if there is a problem with permissions" 
+    #   error_response = {"meta"=>{
+    #                       "code"=>403, 
+    #                       "errorType"=>"not_authorized", 
+    #                       "errorDetail"=>"current user is not the manager of any venues"
+    #                     }, 
+    #                     "response"=>{}} 
   end
 
   # Venue data looks like:
