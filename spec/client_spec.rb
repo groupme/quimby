@@ -10,19 +10,15 @@ class Hash
   end
 end
 
-# VCR.eject_cassette
-# VCR.turn_off!
-
 describe Foursquare::Client do
   VCR.config do |c|
     c.default_cassette_options = {:record => :new_episodes}
   end
-  use_vcr_cassette
 
   let(:client) {Foursquare::Client.new}
 
   describe "#venue_categories" do
-    # use_vcr_cassette
+    use_vcr_cassette
 
     let(:endpoint) do
       client.configuration.endpoint + "venues/categories"
@@ -59,7 +55,7 @@ describe Foursquare::Client do
   end
 
   describe "#create_venue_from" do
-    # use_vcr_cassette
+    use_vcr_cassette
 
     # Venue data looks like 
     # name  Habana Outpost  required the name of the venue
@@ -136,15 +132,12 @@ describe Foursquare::Client do
         end
       end
     end
- end
-
-  # method for associating specials with venues
-  # describe "#attach_special_to"
+  end
 
   # Presently, #create_special only works against the staging/sandbox api
   # The user must own venues before being able to create specials
   describe "#create_special_from" do
-    # use_vcr_cassette
+    use_vcr_cassette
 
     # Special data looks like:
     # Required Fields

@@ -1,6 +1,11 @@
 require "spec_helper"
 
 describe Foursquare do
+
+  # describe "associating venues and specials" do
+  # 
+  # end
+
   describe "#configuration" do
     it "returns a Foursquare::Configuration object" do
       Foursquare.configuration.class.should == Foursquare::Configuration

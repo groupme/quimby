@@ -26,6 +26,13 @@ module Foursquare
       response["special"]
     end
 
+    def create_campaign_from(options={})
+      params = {
+        "specialId" => options[:special]["id"],
+        "venueId" => options[:venues].map{|v| v["id"]}.join(",")}
+      response = post("campaigns/add", params)
+    end
+
     private
     # def log_response(response)
     #   Foursquare.log(response)

@@ -89,3 +89,5 @@ describe Foursquare::Client do
     it "throws an error if the oauth token is expired" 
   end
 end
+
+VCR.turn_on!
