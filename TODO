@@ -1,3 +1,4 @@
+* Separate or othewise identify integration level tests from unit level ones.
 * Add more TODOs
 * Inherit from base and clean up other classes
 * Venues search api has changed, groups are being deprecated, look into that.
