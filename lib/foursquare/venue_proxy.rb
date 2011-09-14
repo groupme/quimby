@@ -30,6 +30,10 @@ module Foursquare
     def nearby(options={})
       search_group("nearby", options)
     end
+    
+    def explore(ll, options = {})
+      response = @foursquare.get('venues/explore', options.merge(:ll => ll))
+    end
 
     private
 
