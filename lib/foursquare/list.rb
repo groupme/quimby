@@ -10,10 +10,6 @@ module Foursquare
       self
     end
     
-    def json
-      @json
-    end
-    
     def id
       @json["id"]
     end

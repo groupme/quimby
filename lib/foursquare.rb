@@ -19,6 +19,7 @@ require "foursquare/category"
 require "foursquare/list"
 require "foursquare/list_item"
 require "foursquare/list_proxy"
+require "foursquare/comment"
 
 module Foursquare
   class Error < StandardError ; end
