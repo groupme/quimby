@@ -28,6 +28,10 @@ module Foursquare
     def settings
       @settings ||= Foursquare::Settings.new(self)
     end
+    
+    def lists
+      Foursquare::ListProxy.new(self)
+    end
 
     def get(path, params={})
       params = camelize(params)

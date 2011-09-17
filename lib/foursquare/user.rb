@@ -144,5 +144,13 @@ module Foursquare
         Foursquare::Tip.new(@foursquare, item)
       end
     end
+    
+    def lists(group = {})
+      options = {:group => group}
+      @foursquare.get("users/#{id}/lists", options)["lists"]["items"].map do |list|
+        Foursquare::List.new(@foursquare, list)
+      end
+    end
+    
   end
 end

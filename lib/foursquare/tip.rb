@@ -21,7 +21,7 @@ module Foursquare
     end
 
     def photo
-      @json["photo"]
+      Foursquare::Photo.new(@foursquare, @json["photo"])
     end
 
     def user

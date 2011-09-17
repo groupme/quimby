@@ -96,6 +96,17 @@ You can also search venues:
 The `:ll` option is required for venue searches. You can also feel free to pass any of the other
 available Foursquare API options, as specified in the docs.
 
+### Lists
+
+We can get all the lists a user has created, edited, ... see [https://developer.foursquare.com/docs/users/lists.html](https://developer.foursquare.com/docs/users/lists.html) for more information.
+
+    user.lists("created")
+    user.lists("edited")
+
+To get a specific list, use:
+
+    foursquare.lists.find("LIST_ID")
+
 ### Logging
 
 If you want to see what's going on up in there, you can set `Foursquare.verbose` to `true`
