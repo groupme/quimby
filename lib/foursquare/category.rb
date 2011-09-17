@@ -6,6 +6,10 @@ module Foursquare
       @json[key]
     end
     
+    def id
+      @json["id"]
+    end
+    
     def initialize(json)
       @json = json
     end
