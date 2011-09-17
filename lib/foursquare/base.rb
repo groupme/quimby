@@ -32,6 +32,10 @@ module Foursquare
     def lists
       Foursquare::ListProxy.new(self)
     end
+    
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
 
     def get(path, params={})
       params = camelize(params)
