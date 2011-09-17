@@ -40,7 +40,7 @@ module Foursquare
     end
     
     def photos
-      return nil if @json["photos"]["items"].blank?
+      return [] if @json["photos"]["items"].blank?
       
       @json["photos"]["items"].map do |photo|
         Foursquare::Photo.new(@foursquare, photo)
