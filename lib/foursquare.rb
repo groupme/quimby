@@ -7,6 +7,7 @@ require "cgi"
 require "foursquare/base"
 require "foursquare/checkin_proxy"
 require "foursquare/checkin"
+require "foursquare/list"
 require "foursquare/user_proxy"
 require "foursquare/user"
 require "foursquare/venue_proxy"
@@ -16,6 +17,7 @@ require "foursquare/tip"
 require "foursquare/photo"
 require "foursquare/location"
 require "foursquare/category"
+require "foursquare/list_item"
 
 module Foursquare
   class Error < StandardError ; end

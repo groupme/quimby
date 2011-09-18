@@ -6,13 +6,13 @@ module Foursquare
       @foursquare, @json = foursquare, json
     end
 
+    def id
+      @json["id"]
+    end
+    
     def fetch
       @json = @foursquare.get("users/#{id}")["user"]
       self
-    end
-
-    def id
-      @json["id"]
     end
 
     def name
