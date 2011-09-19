@@ -24,6 +24,10 @@ module Foursquare
     def venues
       Foursquare::VenueProxy.new(self)
     end
+    
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
 
     def settings
       @settings ||= Foursquare::Settings.new(self)
