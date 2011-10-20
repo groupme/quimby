@@ -105,7 +105,7 @@ module Foursquare
     # is not managing that venue
     def managed_stats
       response = @foursquare.get("venues/#{id}/stats")["stats"]
-      VenueStats.new(response)        
+      Foursquare::VenueStats.new(response)        
     end        
   end    
 end

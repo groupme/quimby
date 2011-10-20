@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version = "0.4.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Pat Nakajima"]
+  s.authors = ["Pat Nakajima", "Mark Nyon"]
   s.date = %q{2011-01-14}
   s.email = %q{pat@groupme.com}
   s.files = [
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "lib/foursquare/user_proxy.rb",
     "lib/foursquare/venue.rb",
     "lib/foursquare/venue_proxy.rb",
+    "lib/foursquare/venue_stats.rb",
     "spec/THERE_ARENT_ANY",
   ]
   s.homepage = %q{https://github.com/groupme/quimby}
@@ -38,13 +39,17 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<typhoeus>, [">= 0"])
-      s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<json>, [">= 0"])   
+      s.add_runtime_dependency(%q<hashie>, [">=0"])
     else
       s.add_dependency(%q<typhoeus>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
+      s.add_dependency(%q<hashie>, [">=0"])
     end
   else
     s.add_dependency(%q<typhoeus>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
+    s.add_dependency(%q<hashie>, [">=0"])
+    
   end
 end
