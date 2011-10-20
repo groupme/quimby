@@ -38,6 +38,12 @@ module Foursquare
       end                                                
       venues
     end
+    
+    def managed_stats(foursquare_id)
+      stats = {}
+      response = @foursquare.get("venues/#{foursquare_id}/stats")["stats"]
+      VenueStats.new(response)        
+    end
 
     private
 
