@@ -1,4 +1,4 @@
-# This class taken from fourmer, using the Trash in order to make Ruby style property values
+# This class taken from the fourmer gem, using the Trash hash in order to make Ruby style property values
 module Foursquare
   class VenueStats < Hashie::Trash
     property :sharing

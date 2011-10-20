@@ -11,11 +11,13 @@ require "foursquare/user_proxy"
 require "foursquare/user"
 require "foursquare/venue_proxy"
 require "foursquare/venue"
+require "foursquare/venue_stats"
 require "foursquare/settings"
 require "foursquare/tip"
 require "foursquare/photo"
 require "foursquare/location"
-require "foursquare/category"
+require "foursquare/category"              
+
 
 module Foursquare
   class Error < StandardError ; end
