@@ -29,6 +29,14 @@ module Foursquare
 
     def nearby(options={})
       search_group("nearby", options)
+    end          
+    
+    def managed
+      venues = []
+      response = @foursquare.get('venues/managed')["venues"].each do |json|
+        venues << Foursquare::Venue.new(@foursquare, json)
+      end                                                
+      venues
     end
 
     private
