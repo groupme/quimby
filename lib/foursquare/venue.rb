@@ -100,14 +100,12 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, item)
       end
     end
-         
+    
     # Returns a list of stats for a managed venue. Will return an error if the user 
     # is not managing that venue
-    def managed_stats(foursquare_id)
-      stats = {}
-      response = @foursquare.get("venues/#{foursquare_id}/stats")["stats"]
+    def managed_stats
+      response = @foursquare.get("venues/#{id}/stats")["stats"]
       VenueStats.new(response)        
-    end
-    
-  end
+    end        
+  end    
 end
