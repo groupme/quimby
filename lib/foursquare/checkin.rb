@@ -47,7 +47,13 @@ module Foursquare
       end
     end
     
+    def comments?
+      # some checkins don't have a comments attribute (following model)
+      (@json["comments"] && @json["comments"]["count"] != 0) ? true : false
+    end
+    
     def comments
+      return [] unless comments?
       fetch if @json["comments"]["items"].blank?
       
       @json["comments"]["items"].map do |comment|

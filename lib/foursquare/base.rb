@@ -74,7 +74,8 @@ module Foursquare
       oauth2_url('authenticate', params)
     end
     
-    def access_token(code, redirect_uri)
+    def access_token(code = nil, redirect_uri = nil)
+      return @access_token unless @access_token.blank?
       # http://developer.foursquare.com/docs/oauth.html
       
       # check params
