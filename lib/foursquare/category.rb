@@ -26,6 +26,10 @@ module Foursquare
       @json["icon"]
     end
     
+    def icon_url(size = 32)
+      icon["prefix"] + size.to_s + icon["name"]
+    end
+    
     # array
     def parents
       @json["parents"]
