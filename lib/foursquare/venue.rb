@@ -103,8 +103,8 @@ module Foursquare
     
     # Returns a list of stats for a managed venue. Will return an error if the user 
     # is not managing that venue
-    def managed_stats
-      response = @foursquare.get("venues/#{id}/stats")["stats"]
+    def managed_stats(options={})
+      response = @foursquare.get("venues/#{id}/stats", options)["stats"]
       Foursquare::VenueStats.new(response)        
     end        
   end    
