@@ -45,7 +45,6 @@ module Foursquare
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
-      Foursquare.log(response.inspect)
       error(response) || response["response"]
     end
     
