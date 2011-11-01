@@ -31,5 +31,14 @@ module Foursquare
     def venue
       @json["venue"] && Foursquare::Venue.new(@foursquare, @json["venue"])
     end
+
+    def todo
+      @json["todo"]
+    end
+    
+    def done
+      @json["done"]
+    end
+
   end
 end

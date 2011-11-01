@@ -21,6 +21,10 @@ module Foursquare
       Foursquare::CheckinProxy.new(self)
     end
 
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
+
     def venues
       Foursquare::VenueProxy.new(self)
     end
