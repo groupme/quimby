@@ -132,6 +132,10 @@ module Foursquare
         end
       end.compact
     end
+    
+    def friends_count
+      @json["friends"]["count"]
+    end
 
     def friends(options={})
       @foursquare.get("users/#{id}/friends", options)["friends"]["items"].map do |item|
