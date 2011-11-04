@@ -35,6 +35,17 @@ module Foursquare
       @json["isMayor"]
     end
 
+    def overlaps
+      fetch unless @json["overlaps"]
+      if @json["overlaps"] && @json["overlaps"]["items"]
+        @json["overlaps"]["items"].map do |checkin|
+          Foursquare::Checkin.new(@foursquare, checkin)
+        end
+      else
+        []
+      end
+    end
+
     def timezone
       @json["timeZone"]
     end
