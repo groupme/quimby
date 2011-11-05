@@ -9,8 +9,10 @@ It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to b
 Install it as a gem (in your `Gemfile`) and its dependencies:
 
     gem "json"
-    gem "typhoeus"
+    gem "typhoeus", :version => "0.2.2"
     gem "quimby"
+    
+Note that some users have reported problems with Heroku and gem "typhoeus", so specifying version "0.2.2" should help resolve the issues.
 
 ## Usage
 
@@ -95,6 +97,17 @@ You can also search venues:
 
 The `:ll` option is required for venue searches. You can also feel free to pass any of the other
 available Foursquare API options, as specified in the docs.
+
+### Lists
+
+We can get all the lists a user has created, edited, ... see [https://developer.foursquare.com/docs/users/lists.html](https://developer.foursquare.com/docs/users/lists.html) for more information.
+
+    user.lists("created")
+    user.lists("edited")
+
+To get a specific list, use:
+
+    foursquare.lists.find("LIST_ID")
 
 ### Logging
 

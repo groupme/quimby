@@ -38,6 +38,28 @@ module Foursquare
     def timezone
       @json["timeZone"]
     end
+    
+    def photos
+      return [] if @json["photos"]["items"].blank?
+      
+      @json["photos"]["items"].map do |photo|
+        Foursquare::Photo.new(@foursquare, photo)
+      end
+    end
+    
+    def comments?
+      # some checkins don't have a comments attribute (following model)
+      (@json["comments"] && @json["comments"]["count"] != 0) ? true : false
+    end
+    
+    def comments
+      return [] unless comments?
+      fetch if @json["comments"]["items"].blank?
+      
+      @json["comments"]["items"].map do |comment|
+        Foursquare::Comment.new(@foursquare, comment)
+      end
+    end
 
     def venue
       @json["venue"] && Foursquare::Venue.new(@foursquare, @json["venue"])

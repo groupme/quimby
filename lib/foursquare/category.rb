@@ -6,6 +6,10 @@ module Foursquare
       @json[key]
     end
     
+    def id
+      @json["id"]
+    end
+    
     def initialize(json)
       @json = json
     end
@@ -20,6 +24,10 @@ module Foursquare
     
     def icon
       @json["icon"]
+    end
+    
+    def icon_url(size = 32)
+      icon["prefix"] + size.to_s + icon["name"]
     end
     
     # array

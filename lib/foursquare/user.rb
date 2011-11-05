@@ -132,6 +132,10 @@ module Foursquare
         end
       end.compact
     end
+    
+    def friends_count
+      @json["friends"]["count"]
+    end
 
     def friends(options={})
       @foursquare.get("users/#{id}/friends", options)["friends"]["items"].map do |item|
@@ -144,5 +148,13 @@ module Foursquare
         Foursquare::Tip.new(@foursquare, item)
       end
     end
+    
+    def lists(group = {})
+      options = {:group => group}
+      @foursquare.get("users/#{id}/lists", options)["lists"]["items"].map do |list|
+        Foursquare::List.new(@foursquare, list)
+      end
+    end
+    
   end
 end

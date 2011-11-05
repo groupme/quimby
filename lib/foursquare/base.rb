@@ -1,6 +1,10 @@
 module Foursquare
   class Base
     API = "https://api.foursquare.com/v2/"
+    # added version to make sure we are using the correct API version
+    # see https://groups.google.com/forum/#!topic/foursquare-api/OGLePZU8VXQ
+    # https://developer.foursquare.com/docs/overview.html#versioning
+    VERSION = "20111022"
 
     def initialize(*args)
       case args.size
@@ -28,9 +32,17 @@ module Foursquare
     def settings
       @settings ||= Foursquare::Settings.new(self)
     end
+    
+    def lists
+      Foursquare::ListProxy.new(self)
+    end
+    
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
 
     def get(path, params={})
-      params = camelize(params)
+      params = camelize(params.merge(:v => VERSION))
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
@@ -40,7 +52,7 @@ module Foursquare
     end
 
     def post(path, params={})
-      params = camelize(params)
+      params = camelize(params.merge(:v => VERSION))
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
@@ -66,7 +78,8 @@ module Foursquare
       oauth2_url('authenticate', params)
     end
     
-    def access_token(code, redirect_uri)
+    def access_token(code = nil, redirect_uri = nil)
+      return @access_token unless @access_token.blank?
       # http://developer.foursquare.com/docs/oauth.html
       
       # check params
