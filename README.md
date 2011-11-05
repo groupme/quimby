@@ -9,8 +9,10 @@ It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to b
 Install it as a gem (in your `Gemfile`) and its dependencies:
 
     gem "json"
-    gem "typhoeus"
+    gem "typhoeus", :version => "0.2.2"
     gem "quimby"
+    
+Note that some users have reported problems with Heroku and gem "typhoeus", so specifying version "0.2.2" should help resolve the issues.
 
 ## Usage
 
