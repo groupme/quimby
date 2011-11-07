@@ -6,7 +6,7 @@ describe Foursquare::User do
   before(:each) do
     @json_item = JSON.parse(get_file("spec/fixtures/user_example.json"))
     @foursquare = Foursquare::Base.new("X1RBNDKTKO3DJY13PUQIGJDU2YQQ3KXL1KPO1UB2M5LAUPFB")
-    #@foursquare.stub(:get).with("users/703332/lists", {:group=>{}}).and_return(JSON.parse(get_file("spec/fixtures/user_lists_example.json")))
+    @foursquare.stub(:get).with("users/703332/lists", {:group=>{}}).and_return(JSON.parse(get_file("spec/fixtures/user_lists_example.json")))
     @user = Foursquare::User.new(@foursquare, @json_item)
   end
   
