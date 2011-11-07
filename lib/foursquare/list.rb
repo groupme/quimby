@@ -26,7 +26,12 @@ module Foursquare
       @json["following"]
     end
     
+    def followers?
+      @json["followers"]["count"] != 0
+    end
+    
     def followers
+      return [] unless followers?
       fetch if @json["followers"]["items"].blank?
       
       @json["followers"]["items"].map do |user|
@@ -34,7 +39,12 @@ module Foursquare
       end
     end
     
+    def collaborators?
+      @json["collaborators"]["count"] != 0
+    end
+    
     def collaborators
+      return [] unless collaborators?
       fetch if @json["collaborators"]["items"].blank?
       
       @json["collaborators"]["items"].map do |user|
