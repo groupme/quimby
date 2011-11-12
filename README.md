@@ -1,3 +1,19 @@
+# This is a locationstar fork of the Quimby plugin. It has a couple of features not in the Groupme fork, including:
+
+1. Searching for managed venues
+1. Retrieving stats from managed venues
+
+and there's more on the menu.
+              
+
+## TODOS (Including the TODOS from the Quimby)
+
+* Proper specs for the gem.
+* Documentation for new features.
+* Creating checkins works, but it should really return notifications. 
+* If the checkin can't be created, it should return errors.
+
+
 # Quimby
 
 ### Formerly named after a pop star whose lawyers decided they didn't like us using his name.
@@ -110,8 +126,3 @@ if you want to use your own logger, and you're kind of a jerk like me, you can d
       Rails.logger.info("[foursquare] #{message}") # HAX, SORRY BRANDON
     end
 
-## TODO
-
-* Creating checkins works, but it should really return notifications. Also, if the
-  checkin can't be created, it should return errors.
-* I don't know, so much other stuff.
