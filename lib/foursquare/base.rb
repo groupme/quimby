@@ -21,6 +21,10 @@ module Foursquare
       Foursquare::CheckinProxy.new(self)
     end
 
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
+
     def venues
       Foursquare::VenueProxy.new(self)
     end
@@ -45,7 +49,6 @@ module Foursquare
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
-      Foursquare.log(response.inspect)
       error(response) || response["response"]
     end
     

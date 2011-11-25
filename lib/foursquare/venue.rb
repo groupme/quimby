@@ -30,7 +30,7 @@ module Foursquare
     def categories
       @categories ||= @json["categories"].map { |hash| Foursquare::Category.new(hash) }
     end
-
+    
     def verified?
       @json["verified"]
     end
@@ -103,8 +103,8 @@ module Foursquare
     
     # Returns a list of stats for a managed venue. Will return an error if the user 
     # is not managing that venue
-    def managed_stats
-      response = @foursquare.get("venues/#{id}/stats")["stats"]
+    def managed_stats(options={})
+      response = @foursquare.get("venues/#{id}/stats", options)["stats"]
       Foursquare::VenueStats.new(response)        
     end        
   end    

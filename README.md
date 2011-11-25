@@ -126,3 +126,8 @@ if you want to use your own logger, and you're kind of a jerk like me, you can d
       Rails.logger.info("[foursquare] #{message}") # HAX, SORRY BRANDON
     end
 
+## TODO
+
+* Creating checkins works, but it should really return notifications. Also, if the
+  checkin can't be created, it should return errors.
+* I don't know, so much other stuff.
