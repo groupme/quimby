@@ -9,7 +9,7 @@ module Foursquare
     end
 
     def created_at
-      @json["createdAt"]
+      Time.at(@json["createdAt"].to_i)
     end
     
     def text

@@ -4,7 +4,7 @@ module Foursquare
     # added version to make sure we are using the correct API version
     # see https://groups.google.com/forum/#!topic/foursquare-api/OGLePZU8VXQ
     # https://developer.foursquare.com/docs/overview.html#versioning
-    VERSION = "20111022"
+    VERSION = "20111129"
 
     def initialize(*args)
       case args.size

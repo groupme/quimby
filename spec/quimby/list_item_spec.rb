@@ -1,42 +1,37 @@
-# some mixins over here (to be able to use Object#blank?() for example)
 require "spec_helper"
 
 describe Foursquare::ListItem do
 
   before(:each) do
-    @json_item = JSON.parse(File.open("spec/fixtures/item_example.json", "rb") do | file |
-      file.read
-    end)
-    @foursquare = Foursquare::Base.new("ACCESS_TOKEN")
-    @item = Foursquare::ListItem.new(@foursquare, @json_item)
+    @json = JSON.parse(get_file("spec/fixtures/lists/list/item.json"))
+    @item = Foursquare::ListItem.new(foursquare, @json)
   end
-  
-
   
   describe "Atomic Attributes" do
     
-    it "should not be done" do
-      
-    end
-    
     it "should have a venue" do
       @item.venue.should_not be_nil
-      @item.venue.id.should eql("4ba2aa53f964a5200e0e38e3")
+      @item.venue.id.should eql("43695300f964a5208c291fe3")
     end
     
-    it "should have a tip" do
-      @item.tip.text.should eql("Go there for dinner with some friends and ask for the central table in front of the Dj.")
+    it "should have a tip?" do
+      @item.tip?.should be_true
     end
     
-    it "should not have a note" do
-      pending
-      #@item.note.should be_nil
+    it "should have a tip text" do
+      @item.tip.text.should eql("my first tip")
     end
     
+    it "should have a photo?" do
+      @item.photo?.should be_true
+    end
     
-    it "should have been created at 1271717431" do
-      pending
-      #@item.created_at.should eql(1271717431)
+    it "should have a photo id" do
+      @item.photo.id.should eql('4ed3af6ab8f7971d6e75396e')
+    end
+    
+    it "should have been created at 1322601499" do
+      @item.created_at.to_i.should eql(1322601499)
     end
     
     it "should not wanted to be done" do
@@ -48,23 +43,12 @@ describe Foursquare::ListItem do
     end
     
     it "should have visited by 0 people" do
-      pending
-      #@item.visited_count.should eql(0)
-    end
-    
-    it "should not have a photo" do
-      pending
-      #@item.photo.should be_nil
+      @item.visited_count.should eql(0)
     end
     
   end
   
-
   describe "Composed Attributes" do
-    
-    it "should not be listed" do
-      pending
-    end
     
     it "should have an user" do
       @item.user.should_not be_nil

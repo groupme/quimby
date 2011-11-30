@@ -9,6 +9,10 @@ module Foursquare
       @json["id"]
     end
     
+    def created_at
+      Time.at(@json["createdAt"].to_i)
+    end
+    
     def user
       Foursquare::User.new(@foursquare, @json["user"])
     end
@@ -25,13 +29,26 @@ module Foursquare
       @json["done"]
     end
     
-    def visited
-      @json["visited"]
+    def visited_count
+      @json["visitedCount"]
+    end
+    
+    def tip?
+      !@json["tip"].blank?
     end
     
     def tip
-      return nil if @json["tip"].blank?
+      return nil unless tip?
       Foursquare::Tip.new(@foursquare, @json["tip"])
+    end
+    
+    def photo?
+      !@json["photo"].blank?
+    end
+    
+    def photo
+      return nil unless photo?
+      Foursquare::Photo.new(@foursquare, @json["photo"])
     end
     
   end

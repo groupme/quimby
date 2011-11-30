@@ -149,8 +149,10 @@ module Foursquare
       end
     end
     
-    def lists(group = {})
-      options = {:group => group}
+    # must specify a group
+    # https://developer.foursquare.com/docs/users/lists.html
+    def lists(group, options = {})
+      options.merge!({:group => group})
       @foursquare.get("users/#{id}/lists", options)["lists"]["items"].map do |list|
         Foursquare::List.new(@foursquare, list)
       end
