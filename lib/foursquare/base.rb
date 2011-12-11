@@ -1,6 +1,7 @@
 module Foursquare
   class Base
     API = "https://api.foursquare.com/v2/"
+    VERSION = "20110910"
 
     def initialize(*args)
       case args.size
@@ -130,9 +131,9 @@ module Foursquare
 
     def merge_auth_params(params)
       if @access_token
-        params.merge!(:oauth_token => @access_token)
+        params.merge!(:oauth_token => @access_token, :v => VERSION)
       else
-        params.merge!(:client_id => @client_id, :client_secret => @client_secret)
+        params.merge!(:client_id => @client_id, :client_secret => @client_secret, :v => VERSION)
       end
     end
   end

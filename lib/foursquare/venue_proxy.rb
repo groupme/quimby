@@ -10,8 +10,6 @@ module Foursquare
 
     def search(options={})
       raise ArgumentError, "You must include :ll" unless options[:ll]
-      #options = options.merge({:v => "20110910"}) unless options[:v]
-      puts options
       response = @foursquare.get('venues/search', options)["venues"].map do |json|
         Foursquare::Venue.new(@foursquare, json)
       end
