@@ -1,3 +1,4 @@
+require 'hashie'
 # This class taken from the fourmer gem, using the Trash hash in order to make Ruby style property values
 module Foursquare
   class VenueStats < Hashie::Trash

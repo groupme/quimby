@@ -12,13 +12,20 @@ require "foursquare/user"
 require "foursquare/venue_proxy"
 require "foursquare/venue"
 require "foursquare/venue_stats"
+require "foursquare/explore_result"
+require "foursquare/explore_item"
+require "foursquare/icon"
 require "foursquare/settings"
 require "foursquare/tip"
 require "foursquare/tip_proxy"
 require "foursquare/photo"
 require "foursquare/location"
 require "foursquare/category"              
-
+require "foursquare/list"
+require "foursquare/list_item"
+require "foursquare/list_proxy"
+require "foursquare/comment"
+require "foursquare/tip_proxy"
 
 module Foursquare
   class Error < StandardError ; end

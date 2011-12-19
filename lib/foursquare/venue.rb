@@ -22,6 +22,10 @@ module Foursquare
     def contact
       @json["contact"]
     end
+    
+    def twitter
+      contact['twitter']
+    end
 
     def location
       Foursquare::Location.new(@json["location"])
@@ -53,13 +57,13 @@ module Foursquare
     
     def primary_category
       return nil if categories.blank?
-      @primary_category ||= categories.select { |category| category.primary? }.try(:first)
+      @primary_category ||= categories.select { |category| category.primary? }.first
     end
     
     # return the url to the icon of the primary category
     # if no primary is available, then return a default icon
     def icon
-      primary_category ? primary_category["icon"] : "https://foursquare.com/img/categories/none.png"
+      primary_category ? Foursquare::Icon.new(primary_category["icon"]) : Foursquare::Icon.venue
     end
     
     def short_url
