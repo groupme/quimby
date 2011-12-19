@@ -5,9 +5,9 @@ Gem::Specification.new do |s|
   s.version = "0.4.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Pat Nakajima", "Mark Nyon"]
+  s.authors = ["Pat Nakajima", "Mark Nyon", "Marcus Smith"]
   s.date = %q{2011-01-14}
-  s.email = %q{pat@groupme.com mark@grandkru.com}
+  s.email = %q{pat@groupme.com mark@grandkru.com marcus@location.st}
   s.files = [
     "README.md",
     "lib/foursquare.rb",
