@@ -1,0 +1,23 @@
+PATH
+  remote: .
+  specs:
+    quimby (0.4.7)
+      hashie
+      json
+      typhoeus
+
+GEM
+  remote: http://rubygems.org/
+  remote: http://rubygems.org/
+  specs:
+    hashie (1.2.0)
+    json (1.6.3)
+    mime-types (1.17.2)
+    typhoeus (0.3.3)
+      mime-types
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  quimby!
