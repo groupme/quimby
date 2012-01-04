@@ -1,7 +1,8 @@
 # This is a locationstar fork of the Quimby plugin. It has a couple of features not in the Groupme fork, including:
 
 1. Searching for managed venues
-1. Retrieving stats from managed venues
+2. Retrieving stats from managed venues
+3. Support for List and ListItem management
 
 and there's more on the menu.
               
@@ -12,7 +13,6 @@ and there's more on the menu.
 * Documentation for new features.
 * Creating checkins works, but it should really return notifications. 
 * If the checkin can't be created, it should return errors.
-
 
 # Quimby
 
