@@ -17,7 +17,9 @@ require "foursquare/tip"
 require "foursquare/tip_proxy"
 require "foursquare/photo"
 require "foursquare/location"
-require "foursquare/category"              
+require "foursquare/category"      
+require "foursquare/list"
+require "foursquare/list_proxy"        
 
 
 module Foursquare
