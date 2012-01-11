@@ -1,4 +1,6 @@
 source :rubygems
-source :gemcutter
-
 gemspec
+
+group :development do
+	gem 'rspec'
+end

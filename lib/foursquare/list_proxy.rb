@@ -1,5 +1,6 @@
 module Foursquare
   class ListProxy
+
     def initialize(foursquare)
       @foursquare = foursquare
     end
@@ -43,6 +44,6 @@ module Foursquare
         nil
       end      
     end
-    
+
   end
 end
