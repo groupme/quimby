@@ -36,5 +36,13 @@ module Foursquare
       end      
     end
     
+    def delete_item(id, options={})
+      if json = @foursquare.post("lists/#{id}/deleteitem", options)
+        Foursquare::List.new(@foursquare, json["list"])
+      else
+        nil
+      end      
+    end
+    
   end
 end
