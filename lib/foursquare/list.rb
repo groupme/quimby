@@ -32,6 +32,8 @@ module Foursquare
     
     def photo
       @json["photo"]
+    end
+    
     def following?
       @json["following"]
     end
