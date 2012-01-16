@@ -16,6 +16,7 @@ module Foursquare
     end
     
     def create(options={})
+      options[:text] = CGI.escape(options[:text])
       if json = @foursquare.post("tips/add", options)
         Foursquare::Tip.new(@foursquare, json["tip"])
       else
