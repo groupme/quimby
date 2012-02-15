@@ -8,7 +8,6 @@ module Foursquare
     # https://developer.foursquare.com/docs/venues/venues.html
     def find(id)
       raise ArgumentError, "You must include a venueId" if id.blank?
-      
       Foursquare::Venue.new(@foursquare, @foursquare.get("venues/#{id}")["venue"])
     end
     
