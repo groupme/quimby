@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "lib/foursquare/location.rb",
     "lib/foursquare/multi.rb",
     "lib/foursquare/photo.rb",
+    "lib/foursquare/photo_proxy.rb",
     "lib/foursquare/settings.rb",
     "lib/foursquare/tip.rb",
     "lib/foursquare/tip_proxy.rb",
@@ -49,12 +50,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<typhoeus>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])   
       s.add_runtime_dependency(%q<hashie>, [">=0"])  
+      s.add_runtime_dependency(%q<multipart-post>, [">=0"])  
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<ZenTest>, [">= 0"])
     else
       s.add_dependency(%q<typhoeus>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<hashie>, [">=0"])
+      s.add_dependency(%q<multipart-post>, [">=0"])  
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<ZenTest>, [">= 0"])
     end
@@ -62,6 +65,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<typhoeus>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
     s.add_dependency(%q<hashie>, [">=0"])    
+    s.add_dependency(%q<multipart-post>, [">=0"])  
     s.add_development_dependency(%q<rspec>, [">= 0"])
     s.add_development_dependency(%q<ZenTest>, [">= 0"])
   end
