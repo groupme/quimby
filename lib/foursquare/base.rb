@@ -1,3 +1,7 @@
+
+require 'uri'
+require 'net/http/post/multipart'
+
 module Foursquare
   class Base
     API = "https://api.foursquare.com/v2/"
@@ -49,6 +53,10 @@ module Foursquare
       Foursquare::TipProxy.new(self)
     end
 
+    def photos
+      Foursquare::PhotoProxy.new(self)
+    end
+
     def get(path, params={})
       params = camelize(params.merge(:v => VERSION))
       Foursquare.log("GET #{API + path}")
@@ -65,6 +73,25 @@ module Foursquare
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
+      error(response) || response["response"]
+   end
+
+    def post_multipart(path, params={}) 
+      params = camelize(params.merge(:v => VERSION))
+      Foursquare.log("POST #{API + path}")
+      Foursquare.log("PARAMS: #{params.inspect}")
+      merge_auth_params(params)
+
+      url = API + path
+      uri = URI.parse(url)
+      req = Net::HTTP::Post::Multipart.new(uri.path, params)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true if uri.scheme == 'https'
+      resp = http.start do |net|
+        net.request(req)
+      end
+
+      response = JSON.parse(resp.body)
       error(response) || response["response"]
     end
     
