@@ -53,6 +53,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<multipart-post>, [">=0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
+      s.add_development_dependency(%q<metrical>, [">= 0"])
+
     else
       s.add_dependency(%q<typhoeus>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
@@ -60,6 +62,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<multipart-post>, [">=0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
+      s.add_development_dependency(%q<metrical>, [">= 0"])
     end
   else
     s.add_dependency(%q<typhoeus>, [">= 0"])
@@ -68,5 +71,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<multipart-post>, [">=0"])
     s.add_development_dependency(%q<rspec>, [">= 0"])
     s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
+    s.add_development_dependency(%q<metrical>, [">= 0"])
   end
 end
