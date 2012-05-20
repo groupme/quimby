@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{quimby}
-  s.version = "0.5.1"
+  s.version = "0.5.5"
   s.description = %q{Foursquare API Wrapper}
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pat Nakajima", "Mark Nyon", "Marcus Smith"]
@@ -55,7 +55,10 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
       s.add_development_dependency(%q<metrical>, [">= 0"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
-      s.add_development_dependency(%q<pry_debug>, [">= 0"])
+      s.add_development_dependency(%q<pry>, [">= 0"])
+      s.add_development_dependency(%q<pry-remote>, [">= 0"])
+      s.add_development_dependency(%q<pry-nav>, [">= 0"])
+      s.add_development_dependency(%q<plymouth>, [">= 0"])
     else
       s.add_dependency(%q<typhoeus>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
@@ -65,7 +68,10 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
       s.add_development_dependency(%q<metrical>, [">= 0"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
-      s.add_development_dependency(%q<pry_debug>, [">= 0"])
+      s.add_development_dependency(%q<pry>, [">= 0"])
+      s.add_development_dependency(%q<pry-remote>, [">= 0"])
+      s.add_development_dependency(%q<pry-nav>, [">= 0"])
+      s.add_development_dependency(%q<plymouth>, [">= 0"])
     end
   else
     s.add_dependency(%q<typhoeus>, [">= 0"])
@@ -76,6 +82,9 @@ Gem::Specification.new do |s|
     s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
     s.add_development_dependency(%q<metrical>, [">= 0"])
     s.add_development_dependency(%q<simplecov>, [">= 0"])
-    s.add_development_dependency(%q<pry_debug>, [">= 0"])
+    s.add_development_dependency(%q<pry>, [">= 0"])
+    s.add_development_dependency(%q<pry-remote>, [">= 0"])
+    s.add_development_dependency(%q<pry-nav>, [">= 0"])
+    s.add_development_dependency(%q<plymouth>, [">= 0"])
   end
 end
