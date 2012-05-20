@@ -106,6 +106,10 @@ GEM
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     sexp_processor (3.0.7)
+    simplecov (0.6.4)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     syntax (1.0.0)
     typhoeus (0.3.3)
       mime-types
@@ -118,3 +122,4 @@ DEPENDENCIES
   metrical
   quimby!
   rspec
+  simplecov
