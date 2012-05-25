@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{quimby}
-  s.version = "0.5.1"
+  s.version = "0.5.5"
   s.description = %q{Foursquare API Wrapper}
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pat Nakajima", "Mark Nyon", "Marcus Smith"]
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "lib/foursquare/location.rb",
     "lib/foursquare/multi.rb",
     "lib/foursquare/photo.rb",
+    "lib/foursquare/photo_proxy.rb",
     "lib/foursquare/settings.rb",
     "lib/foursquare/tip.rb",
     "lib/foursquare/tip_proxy.rb",
@@ -47,22 +48,43 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<typhoeus>, [">= 0"])
-      s.add_runtime_dependency(%q<json>, [">= 0"])   
-      s.add_runtime_dependency(%q<hashie>, [">=0"])  
+      s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<hashie>, [">=0"])
+      s.add_runtime_dependency(%q<multipart-post>, [">=0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<ZenTest>, [">= 0"])
+      s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
+      s.add_development_dependency(%q<metrical>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
+      s.add_development_dependency(%q<pry>, [">= 0"])
+      s.add_development_dependency(%q<pry-remote>, [">= 0"])
+      s.add_development_dependency(%q<pry-nav>, [">= 0"])
+      s.add_development_dependency(%q<plymouth>, [">= 0"])
     else
       s.add_dependency(%q<typhoeus>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<hashie>, [">=0"])
+      s.add_dependency(%q<multipart-post>, [">=0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<ZenTest>, [">= 0"])
+      s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
+      s.add_development_dependency(%q<metrical>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
+      s.add_development_dependency(%q<pry>, [">= 0"])
+      s.add_development_dependency(%q<pry-remote>, [">= 0"])
+      s.add_development_dependency(%q<pry-nav>, [">= 0"])
+      s.add_development_dependency(%q<plymouth>, [">= 0"])
     end
   else
     s.add_dependency(%q<typhoeus>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
-    s.add_dependency(%q<hashie>, [">=0"])    
+    s.add_dependency(%q<hashie>, [">=0"])
+    s.add_dependency(%q<multipart-post>, [">=0"])
     s.add_development_dependency(%q<rspec>, [">= 0"])
-    s.add_development_dependency(%q<ZenTest>, [">= 0"])
+    s.add_development_dependency(%q<autotest-standalone>, [">= 0"])
+    s.add_development_dependency(%q<metrical>, [">= 0"])
+    s.add_development_dependency(%q<simplecov>, [">= 0"])
+    s.add_development_dependency(%q<pry>, [">= 0"])
+    s.add_development_dependency(%q<pry-remote>, [">= 0"])
+    s.add_development_dependency(%q<pry-nav>, [">= 0"])
+    s.add_development_dependency(%q<plymouth>, [">= 0"])
   end
 end
