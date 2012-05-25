@@ -50,7 +50,6 @@ module Foursquare
     end
 
     def get(path, params={})
-      params = camelize(params.merge(:v => VERSION))
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
@@ -60,7 +59,6 @@ module Foursquare
     end
 
     def post(path, params={})
-      params = camelize(params.merge(:v => VERSION))
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
