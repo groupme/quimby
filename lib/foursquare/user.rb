@@ -137,6 +137,10 @@ module Foursquare
       @json["friends"]["count"]
     end
 
+    def followers_count
+      @json["followers"]["count"]
+    end
+
     def friends(options={})
       @foursquare.get("users/#{id}/friends", options)["friends"]["items"].map do |item|
         Foursquare::User.new(@foursquare, item)
