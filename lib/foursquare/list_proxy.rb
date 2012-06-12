@@ -10,6 +10,7 @@ module Foursquare
     end
 
     def create(options={})
+      debugger
       if json = @foursquare.post("lists/add", options)
         Foursquare::List.new(@foursquare, json["list"])
       else
@@ -37,6 +38,15 @@ module Foursquare
       end      
     end
     
+    def user_add_done_item(user_id, options={})
+      puts @foursquare
+      if json = @foursquare.post("lists/#{user_id}/dones/additem", options)
+        Foursquare::List.new(@foursquare, json["list"])
+      else
+        nil
+      end      
+    end
+
     def delete_item(id, options={})
       if json = @foursquare.post("lists/#{id}/deleteitem", options)
         Foursquare::List.new(@foursquare, json["list"])
