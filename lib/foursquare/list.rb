@@ -22,8 +22,8 @@ module Foursquare
       @json["description"]
     end
     
-    def followers
-      @json["followers"]
+    def follower_count
+      @json["followers"]["count"]
     end
     
     def url
