@@ -70,6 +70,10 @@ module Foursquare
       @json["shortUrl"]
     end
     
+    def url
+      @json["url"]
+    end
+
     def photos_count
       @json["photos"]["count"]
     end
