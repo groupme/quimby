@@ -12,6 +12,10 @@ module Foursquare
       @json["text"]
     end
 
+    def url
+      @json["url"]
+    end
+
     def created_at
       @json["createdAt"]
     end
