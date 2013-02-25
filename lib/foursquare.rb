@@ -1,10 +1,16 @@
 $LOAD_PATH << File.dirname(__FILE__)
 
 require "rubygems"
-require "typhoeus"
-require "json"
 require "cgi"
+require "json"
+require "typhoeus"
+require "yaml"
 require "foursquare/base"
+require "foursquare/api"
+require "foursquare/client"
+require "foursquare/configuration"
+require "foursquare/json_methods"
+require "foursquare/model_base"
 require "foursquare/checkin_proxy"
 require "foursquare/checkin"
 require "foursquare/user_proxy"
@@ -21,6 +27,41 @@ module Foursquare
   class Error < StandardError ; end
   class InvalidAuth < Foursquare::Error; end
   class ServiceUnavailable < Foursquare::Error; end
+
+  ENVIRONMENT = (ENV["FSQ_ENV"] || "production").freeze
+
+  class << self
+    # Alias for Foursquare::Client.new
+    def new(options={})
+      Foursquare::Client.new(options)
+    end
+
+    # Delegate to Foursquare::Client
+    def method_missing(method, *args, &block)
+      return super unless new.respond_to?(method)
+      new.send(method, *args, &block)
+    end
+
+    def respond_to?(method, include_private = false)
+      new.respond_to?(method, include_private) || super(method, include_private)
+    end
+  end
+
+  def self.configuration
+    @configuration ||= Foursquare::Configuration.new
+  end
+
+  def self.configure
+    yield configuration if block_given?
+  end
+
+  def self.env=(env_name)
+    @env = env_name
+  end
+
+  def self.env
+    @env ||= ENVIRONMENT
+  end
 
   def self.verbose=(setting)
     @verbose = setting

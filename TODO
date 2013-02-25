@@ -1,0 +1,36 @@
+* Separate or othewise identify integration level tests from unit level ones.
+* Add more TODOs
+* Inherit from base and clean up other classes
+* Venues search api has changed, groups are being deprecated, look into that.
+* Document vcr and config.yml for testing. 
+* Add support for the venue creation endpoint
+* Add support for the special creation endpoint
+* Consider implementing the following proposed interface for accessing objects:
+  # client.venues["permalink"]
+  # client.venues["id"] e.g. client.venues["118057"]
+* Translate returned objects and passed params between Ruby and JS idioms
+  e.g. exit_url => exitUrl, and purchaseUrl => purchase_url
+* When creating a special fails, the error from the server is:
+  {"meta"=>{"code"=>403, "errorType"=>"not_authorized", "errorDetail"=>"current user is not the manager of any venues"}, "response"=>{}}
+  This should propagate up through the output of #create_special
+  to be more specific, replacing the currently returned message;
+
+  Foursquare::Error:
+       Although authentication succeeded, the acting user is not allowed to see this information due to privacy restrictions.
+
+* Determine the following:
+  # Which namespacing/api is most usable/intuitive/obvious?
+  # it "raises Foursquare::API::ServiceUnavailableError" 
+  # it "raises Foursquare::API::InvalidAuthError" 
+  # it "raises Foursquare::API::Error::ServiceUnavailable"
+  # it "raises Foursquare::API::Error::InvalidAuth"
+  # it "raises Foursquare::Error::ServiceUnavailable if an auth error occurs" 
+  # it "raises Foursquare::Error::InvalidAuth if an auth error occurs" 
+
+# DONE
+* Cleanup date stamp in base
+  This behavior is now overridden in Foursquare::Client#valid_date_string
+* Add basic auth for Typhoeus
+  Basic auth credentials are now passed if they are present in the APPCONFIG
+* Move configuration logic into its own class
+  Adds an interface for configuring Foursquare module & Client instances

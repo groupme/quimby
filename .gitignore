@@ -1,1 +1,4 @@
+config.yml
+fixtures
+spec/config.yml
 test.rb

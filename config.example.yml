@@ -1,0 +1,19 @@
+# Staging Environment
+:staging:
+  :api:
+    :endpoint: https:/api.staging.foursquare.com/v2/
+  :auth:
+    :http_username: basic_auth_username
+    :http_password: basic_auth_password
+    :oauth_token: staging_oauth_token
+    :oauth_consumer_key: staging_oauth_consumer_key
+    :oauth_consumer_secret: staging_oauth_consumer_secret
+
+# Production Environment
+:production:
+  :api:
+    :endpoint: https://api.foursquare.com/v2/
+  :auth:
+    :oauth_token: production_oauth_token
+    :oauth_consumer_key: production_oauth_consumer_key
+    :oauth_consumer_secret: production_oauth_consumer_secret

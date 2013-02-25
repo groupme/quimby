@@ -1,38 +1,11 @@
 module Foursquare
-  class Venue
-    attr_reader :json
-
-    def initialize(foursquare, json)
-      @foursquare, @json = foursquare, json
-    end
-    
-    def fetch
-      @json = @foursquare.get("venues/#{id}")["venue"]
-      self
-    end
-
-    def id
-      @json["id"]
-    end
-
-    def name
-      @json["name"]
-    end
-
-    def contact
-      @json["contact"]
-    end
-
+  class Venue < ModelBase
     def location
       Foursquare::Location.new(@json["location"])
     end
 
     def categories
       @categories ||= @json["categories"].map { |hash| Foursquare::Category.new(hash) }
-    end
-
-    def verified?
-      @json["verified"]
     end
 
     def checkins_count
@@ -47,10 +20,6 @@ module Foursquare
       @json["todos"]["count"]
     end
     
-    def stats
-      @json["stats"]
-    end
-    
     def primary_category
       return nil if categories.blank?
       @primary_category ||= categories.select { |category| category.primary? }.try(:first)
@@ -60,10 +29,6 @@ module Foursquare
     # if no primary is available, then return a default icon
     def icon
       primary_category ? primary_category["icon"] : "https://foursquare.com/img/categories/none.png"
-    end
-    
-    def short_url
-      @json["shortUrl"]
     end
     
     def photos_count
@@ -100,6 +65,5 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, item)
       end
     end
-    
   end
 end
