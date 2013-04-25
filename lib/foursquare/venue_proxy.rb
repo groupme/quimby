@@ -25,7 +25,7 @@ module Foursquare
     
     # https://developer.foursquare.com/docs/venues/search.html
     def search(options={})
-      raise ArgumentError, "You must include :ll or :near" unless options[:ll] || options[:near]     
+      raise ArgumentError, "You must include :ll, :near or :sw" unless options[:ll] || options[:near] || options[:sw]
       @foursquare.get('venues/search', options)["venues"].map do |json|
         Foursquare::Venue.new(@foursquare, json)
       end
