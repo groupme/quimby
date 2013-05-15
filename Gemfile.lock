@@ -1,14 +1,13 @@
 PATH
   remote: .
   specs:
-    quimby (0.5.1)
+    quimby (0.5.5)
       hashie
       json
       multipart-post
       typhoeus
 
 GEM
-  remote: http://rubygems.org/
   specs:
     Saikuro (1.1.0)
     activesupport (3.2.3)

@@ -4,9 +4,10 @@ SimpleCov.start
 require 'bundler/setup'
 require 'rspec'
 require 'quimby'
-gem 'pry'
-gem 'pry-remote'
-gem 'pry-nav'
+require 'pry'
+require 'pry-remote'
+require 'pry-nav'
+require 'plymouth'
 RSpec.configure do |config|
 end
 
