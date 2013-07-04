@@ -33,7 +33,7 @@ module Foursquare
 
     # https://developer.foursquare.com/docs/venues/managed
     def managed
-      @foursquare.get("venues/managed")["venues"].map do |item|
+      @foursquare.get("venues/managed")["venues"]["items"].map do |item|
         Foursquare::Venue.new(@foursquare, item)
       end
     end
