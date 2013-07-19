@@ -10,7 +10,6 @@ module Foursquare
     end
 
     def create(options={})
-      debugger
       if json = @foursquare.post("lists/add", options)
         Foursquare::List.new(@foursquare, json["list"])
       else

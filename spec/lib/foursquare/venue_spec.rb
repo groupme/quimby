@@ -51,7 +51,7 @@ describe Foursquare::Venue do
     end
     
     it "shoud have all the photos" do
-      pending
+      @foursquarehq.photos.count.should eql(6)
     end
     
     it "should have tips" do
