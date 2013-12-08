@@ -83,9 +83,6 @@ GEM
       reek (= 1.2.12)
       sexp_processor (~> 3.0.3)
     metric_fu-roodi (3.0.0)
-    metrical (0.1.0)
-      metric_fu (~> 2.1.1)
-      rcov (~> 0.9)
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.0)
@@ -155,7 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest-standalone
-  metrical
+  metric_fu
   plymouth
   pry
   pry-nav
