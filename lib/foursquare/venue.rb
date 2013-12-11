@@ -5,7 +5,7 @@ module Foursquare
     def initialize(foursquare, json)
       @foursquare, @json = foursquare, json
     end
-    
+
     def fetch
       @json = @foursquare.get("venues/#{id}")["venue"]
       self
@@ -21,6 +21,10 @@ module Foursquare
 
     def contact
       @json["contact"]
+    end
+
+    def twitter
+      contact['twitter']
     end
 
     def location
@@ -46,30 +50,34 @@ module Foursquare
     def todos_count
       @json["todos"]["count"]
     end
-    
+
     def stats
       @json["stats"]
     end
-    
+
     def primary_category
       return nil if categories.blank?
-      @primary_category ||= categories.select { |category| category.primary? }.try(:first)
+      @primary_category ||= categories.select { |category| category.primary? }.first
     end
-    
+
     # return the url to the icon of the primary category
     # if no primary is available, then return a default icon
     def icon
-      primary_category ? primary_category["icon"] : "https://foursquare.com/img/categories/none.png"
+      primary_category ? Foursquare::Icon.new(primary_category["icon"]) : Foursquare::Icon.venue
     end
-    
+
     def short_url
       @json["shortUrl"]
     end
-    
+
+    def url
+      @json["url"]
+    end
+
     def photos_count
       @json["photos"]["count"]
     end
-    
+
     # not all photos may be present here (but we try to avoid one extra API call)
     # if you want to get all the photos, try all_photos
     def photos
@@ -78,20 +86,20 @@ module Foursquare
         Foursquare::Photo.new(@foursquare, item)
       end
     end
-    
+
     # https://developer.foursquare.com/docs/venues/photos.html
     def all_photos(options={:group => "venue"})
       @foursquare.get("venues/#{id}/photos", options)["photos"]["items"].map do |item|
         Foursquare::Photo.new(@foursquare, item)
       end
     end
-    
+
     # count the people who have checked-in at the venue in the last two hours
     def here_now_count
       fetch unless @json.has_key?("hereNow")
       @json["hereNow"]["count"]
     end
-    
+
     # returns a list of checkins (only if a valid oauth token from a user is provided)
     # https://developer.foursquare.com/docs/venues/herenow.html
     # options: limit, offset, aftertimestamp
@@ -100,6 +108,12 @@ module Foursquare
         Foursquare::Checkin.new(@foursquare, item)
       end
     end
-    
+
+    # Returns a list of stats for a managed venue. Will return an error if the user
+    # is not managing that venue
+    def managed_stats(options={})
+      response = @foursquare.get("venues/#{id}/stats", options)["stats"]
+      Foursquare::VenueStats.new(response)
+    end
   end
 end

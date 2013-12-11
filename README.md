@@ -1,3 +1,19 @@
+# This is a locationstar fork of the Quimby plugin. It has a couple of features not in the Groupme fork, including:
+
+1. Searching for managed venues
+2. Retrieving stats from managed venues
+3. Support for List and ListItem management
+
+and there's more on the menu.
+              
+
+## TODOS (Including the TODOS from the Quimby)
+
+* Proper specs for the gem.
+* Documentation for new features.
+* Creating checkins works, but it should really return notifications. 
+* If the checkin can't be created, it should return errors.
+
 # Quimby
 
 ### Formerly named after a pop star whose lawyers decided they didn't like us using his name.
@@ -9,8 +25,10 @@ It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to b
 Install it as a gem (in your `Gemfile`) and its dependencies:
 
     gem "json"
-    gem "typhoeus"
+    gem "typhoeus", :version => "0.2.2"
     gem "quimby"
+    
+Note that some users have reported problems with Heroku and gem "typhoeus", so specifying version "0.2.2" should help resolve the issues.
 
 ## Usage
 
@@ -95,6 +113,17 @@ You can also search venues:
 
 The `:ll` option is required for venue searches. You can also feel free to pass any of the other
 available Foursquare API options, as specified in the docs.
+
+### Lists
+
+We can get all the lists a user has created, edited, ... see [https://developer.foursquare.com/docs/users/lists.html](https://developer.foursquare.com/docs/users/lists.html) for more information.
+
+    user.lists("created")
+    user.lists("edited")
+
+To get a specific list, use:
+
+    foursquare.lists.find("LIST_ID")
 
 ### Logging
 

@@ -12,6 +12,10 @@ module Foursquare
       @json["text"]
     end
 
+    def url
+      @json["url"]
+    end
+
     def created_at
       @json["createdAt"]
     end
@@ -21,7 +25,7 @@ module Foursquare
     end
 
     def photo
-      @json["photo"]
+      Foursquare::Photo.new(@foursquare, @json["photo"])
     end
 
     def user
@@ -31,5 +35,14 @@ module Foursquare
     def venue
       @json["venue"] && Foursquare::Venue.new(@foursquare, @json["venue"])
     end
+
+    def todo
+      @json["todo"]
+    end
+    
+    def done
+      @json["done"]
+    end
+
   end
 end

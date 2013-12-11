@@ -1,6 +1,14 @@
+
+require 'uri'
+require 'net/http/post/multipart'
+
 module Foursquare
   class Base
     API = "https://api.foursquare.com/v2/"
+    # added version to make sure we are using the correct API version
+    # see https://groups.google.com/forum/#!topic/foursquare-api/OGLePZU8VXQ
+    # https://developer.foursquare.com/docs/overview.html#versioning
+    VERSION = "20111129"
 
     def initialize(*args)
       case args.size
@@ -21,16 +29,35 @@ module Foursquare
       Foursquare::CheckinProxy.new(self)
     end
 
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
+
     def venues
       Foursquare::VenueProxy.new(self)
+    end
+
+    def lists
+      Foursquare::ListProxy.new(self)
     end
 
     def settings
       @settings ||= Foursquare::Settings.new(self)
     end
 
+    def lists
+      Foursquare::ListProxy.new(self)
+    end
+
+    def tips
+      Foursquare::TipProxy.new(self)
+    end
+
+    def photos
+      Foursquare::PhotoProxy.new(self)
+    end
+
     def get(path, params={})
-      params = camelize(params)
       Foursquare.log("GET #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
@@ -40,41 +67,59 @@ module Foursquare
     end
 
     def post(path, params={})
-      params = camelize(params)
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
       merge_auth_params(params)
       response = JSON.parse(Typhoeus::Request.post(API + path, :params => params).body)
-      Foursquare.log(response.inspect)
+      error(response) || response["response"]
+   end
+
+    def post_multipart(path, params={})
+      params = camelize(params.merge(:v => VERSION))
+      Foursquare.log("POST #{API + path}")
+      Foursquare.log("PARAMS: #{params.inspect}")
+      merge_auth_params(params)
+
+      url = API + path
+      uri = URI.parse(url)
+      req = Net::HTTP::Post::Multipart.new(uri.path, params)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true if uri.scheme == 'https'
+      resp = http.start do |net|
+        net.request(req)
+      end
+
+      response = JSON.parse(resp.body)
       error(response) || response["response"]
     end
-    
+
     def authorize_url(redirect_uri)
       # http://developer.foursquare.com/docs/oauth.html
-      
+
       # check params
       raise "you need to define a client id before" if @client_id.blank?
       raise "no callback url provided" if redirect_uri.blank?
-      
+
       # params
       params = {}
       params["client_id"] = @client_id
       params["response_type"] = "code"
       params["redirect_uri"] = redirect_uri
-      
+
       # url
       oauth2_url('authenticate', params)
     end
-    
-    def access_token(code, redirect_uri)
+
+    def access_token(code = nil, redirect_uri = nil)
+      return @access_token unless @access_token.blank?
       # http://developer.foursquare.com/docs/oauth.html
-      
+
       # check params
       raise "you need to define a client id before" if @client_id.blank?
       raise "you need to define a client secret before" if @client_secret.blank?
       raise "no code provided" if code.blank?
       raise "no redirect_uri provided" if redirect_uri.blank?
-      
+
       # params
       params = {}
       params["client_id"] = @client_id
@@ -82,10 +127,10 @@ module Foursquare
       params["grant_type"] = "authorization_code"
       params["redirect_uri"] = redirect_uri
       params["code"] = code
-      
+
       # url
       url = oauth2_url('access_token', params)
-      
+
       # response
       # http://developer.foursquare.com/docs/oauth.html
       response = JSON.parse(Typhoeus::Request.get(url).body)
@@ -93,7 +138,7 @@ module Foursquare
     end
 
     private
-    
+
     def oauth2_url(method_name, params)
       "https://foursquare.com/oauth2/#{method_name}?#{params.to_query}"
     end
@@ -127,9 +172,9 @@ module Foursquare
 
     def merge_auth_params(params)
       if @access_token
-        params.merge!(:oauth_token => @access_token)
+        params.merge!(:oauth_token => @access_token, :v => VERSION)
       else
-        params.merge!(:client_id => @client_id, :client_secret => @client_secret)
+        params.merge!(:client_id => @client_id, :client_secret => @client_secret, :v => VERSION)
       end
     end
   end

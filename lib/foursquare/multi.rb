@@ -30,7 +30,7 @@ module Foursquare
         o
       }
       camelized.inject([]) { |o, (k, v)|
-        o << CGI.escape(k) + "=" CGI.escape(v)
+        o << "#{CGI.escape(k)}=#{CGI.escape(v)}"
         o
       }.join('&')
     end

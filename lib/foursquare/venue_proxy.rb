@@ -4,21 +4,35 @@ module Foursquare
       @foursquare = foursquare
     end
 
+    # find a specific venue given an id
+    # https://developer.foursquare.com/docs/venues/venues.html
     def find(id)
+      raise ArgumentError, "You must include a venueId" if id.blank?
       Foursquare::Venue.new(@foursquare, @foursquare.get("venues/#{id}")["venue"])
     end
-
+    
+    # returns all categories
+    # https://developer.foursquare.com/docs/venues/categories.html
+    def categories
+      @foursquare.get('venues/categories')['categories']
+    end
+    
+    # explore
+    # https://developer.foursquare.com/docs/venues/explore.html
+    def explore(options = {})
+      Foursquare::ExploreResult.new @foursquare, @foursquare.get('venues/explore', options)
+    end
+    
+    # https://developer.foursquare.com/docs/venues/search.html
     def search(options={})
-      raise ArgumentError, "You must include :ll" unless options[:ll]
-      response = @foursquare.get('venues/search', options)["groups"].inject({}) do |venues, group|
-        venues[group["type"]] ||= []
-        venues[group["type"]] += group["items"].map do |json|
-          Foursquare::Venue.new(@foursquare, json)
-        end
-        venues
+      raise ArgumentError, "You must include :ll, :near or :sw" unless options[:ll] || options[:near] || options[:sw]
+      @foursquare.get('venues/search', options)["venues"].map do |json|
+        Foursquare::Venue.new(@foursquare, json)
       end
     end
-
+    
+    # get trending venues
+    # https://developer.foursquare.com/docs/venues/trending.html
     def trending(options={})
       search_group("trending", options)
     end
@@ -29,16 +43,25 @@ module Foursquare
 
     def nearby(options={})
       search_group("nearby", options)
+    end          
+    
+    def managed
+      venues = []
+      response = @foursquare.get('venues/managed')["venues"].each do |json|
+        venues << Foursquare::Venue.new(@foursquare, json)
+      end                                                
+      venues
     end
-
+   
     private
 
     def search_group(name, options)
       raise ArgumentError, "You must include :ll" unless options[:ll]
-      response = @foursquare.get('venues/search', options)["groups"].detect { |group| group["type"] == name }
-      response ? response["items"].map do |json|
+      
+      @foursquare.get('venues/trending', options)["venues"].map do |json|
         Foursquare::Venue.new(@foursquare, json)
-      end : []
+      end
     end
+    
   end
 end
