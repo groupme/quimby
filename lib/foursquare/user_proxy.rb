@@ -5,7 +5,7 @@ module Foursquare
     end
 
     def self.search(foursquare, options={})
-      
+
     end
 
     def find(id)
