@@ -44,11 +44,11 @@ module Foursquare
     def settings
       @settings ||= Foursquare::Settings.new(self)
     end
-    
+
     def lists
       Foursquare::ListProxy.new(self)
     end
-    
+
     def tips
       Foursquare::TipProxy.new(self)
     end
@@ -74,7 +74,7 @@ module Foursquare
       error(response) || response["response"]
    end
 
-    def post_multipart(path, params={}) 
+    def post_multipart(path, params={})
       params = camelize(params.merge(:v => VERSION))
       Foursquare.log("POST #{API + path}")
       Foursquare.log("PARAMS: #{params.inspect}")
@@ -92,34 +92,34 @@ module Foursquare
       response = JSON.parse(resp.body)
       error(response) || response["response"]
     end
-    
+
     def authorize_url(redirect_uri)
       # http://developer.foursquare.com/docs/oauth.html
-      
+
       # check params
       raise "you need to define a client id before" if @client_id.blank?
       raise "no callback url provided" if redirect_uri.blank?
-      
+
       # params
       params = {}
       params["client_id"] = @client_id
       params["response_type"] = "code"
       params["redirect_uri"] = redirect_uri
-      
+
       # url
       oauth2_url('authenticate', params)
     end
-    
+
     def access_token(code = nil, redirect_uri = nil)
       return @access_token unless @access_token.blank?
       # http://developer.foursquare.com/docs/oauth.html
-      
+
       # check params
       raise "you need to define a client id before" if @client_id.blank?
       raise "you need to define a client secret before" if @client_secret.blank?
       raise "no code provided" if code.blank?
       raise "no redirect_uri provided" if redirect_uri.blank?
-      
+
       # params
       params = {}
       params["client_id"] = @client_id
@@ -127,10 +127,10 @@ module Foursquare
       params["grant_type"] = "authorization_code"
       params["redirect_uri"] = redirect_uri
       params["code"] = code
-      
+
       # url
       url = oauth2_url('access_token', params)
-      
+
       # response
       # http://developer.foursquare.com/docs/oauth.html
       response = JSON.parse(Typhoeus::Request.get(url).body)
@@ -138,7 +138,7 @@ module Foursquare
     end
 
     private
-    
+
     def oauth2_url(method_name, params)
       "https://foursquare.com/oauth2/#{method_name}?#{params.to_query}"
     end
