@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
     "LICENSE",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{https://github.com/groupme/quimby}
+  s.homepage = %q{https://github.com/locationstar/quimby}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{A Foursquare API wrapper}
