@@ -19,12 +19,14 @@ Gem::Specification.new do |s|
     "lib/foursquare/checkin.rb",
     "lib/foursquare/category.rb",
     "lib/foursquare/location.rb",
+    "lib/foursquare/list.rb",
     "lib/foursquare/photo.rb",
     "lib/foursquare/checkin_proxy.rb",
     "lib/foursquare/user.rb",
     "lib/foursquare/user_proxy.rb",
     "lib/foursquare/venue.rb",
     "lib/foursquare/venue_proxy.rb",
+    "lib/foursquare/list_item.rb",
     "spec/THERE_ARENT_ANY",
   ]
   s.homepage = %q{https://github.com/groupme/quimby}
