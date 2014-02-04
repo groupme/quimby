@@ -101,5 +101,11 @@ module Foursquare
       end
     end
     
+    # https://developer.foursquare.com/docs/venues/tips.html
+    def tips
+      @foursquare.get("venues/#{id}/tips")["tips"]["items"].map do |item|
+        Foursquare::Tip.new(@foursquare, item)
+      end
+    end
   end
 end
