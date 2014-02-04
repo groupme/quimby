@@ -31,6 +31,13 @@ module Foursquare
       search_group("nearby", options)
     end
 
+    # https://developer.foursquare.com/docs/venues/managed
+    def managed
+      @foursquare.get("venues/managed")["venues"]["items"].map do |item|
+        Foursquare::Venue.new(@foursquare, item)
+      end
+    end
+
     private
 
     def search_group(name, options)
