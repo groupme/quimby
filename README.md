@@ -18,11 +18,11 @@ Install it as a gem (in your `Gemfile`) and its dependencies:
 
 Get a foursquare:
 
-    foursquare = Foursquare::Base.new("ACCESS_TOKEN")
+    foursquare = Foursquare::Base.new(:access_token => "ACCESS_TOKEN")
 
-You can also user `client_id` and `client_secret`
+You can also use `client_id` and `client_secret`
 
-    foursquare = Foursquare::Base.new("CLIENT_ID", "CLIENT_SECRET")
+    foursquare = Foursquare::Base.new(:client_id => "CLIENT_ID", :client_secret => "CLIENT_SECRET")
     
 ### Authentication
 
@@ -32,8 +32,12 @@ First, you need to [register your application](https://foursquare.com/oauth).
 
 Get a foursquare with your `client_id` and `client_secret`
 
-    foursquare = Foursquare::Base.new("CLIENT_ID", "CLIENT_SECRET")
+    foursquare = Foursquare::Base.new(:client_id => "CLIENT_ID", :client_secret => "CLIENT_SECRET")
   
+By default, today's date in YYYYMMDD format will be passed as the API version to all requests to the Foursquare API. If you'd like to specify your own version, you may do so by passing your version to the initialization of `Foursquare::Base`.
+
+    foursquare = Foursquare::Base.new(:client_id => "CLIENT_ID", :client_secret => "CLIENT_SECRET", :api_version => '20120131')
+	
 Redirect users to the Foursquare authentication page. You need to pass your `callback_url`. Get the url to redirect to with:
 
     foursquare.authorize_url("CALLBACK_SESSION_URL")
@@ -44,7 +48,8 @@ Then Foursquare will redirect the user to your callback url with a code paramete
     
 Now you can get a foursquare using only an access token and make requests on user's behalf:
 
-    foursquare = Foursquare::Base.new("ACCESS_TOKEN")
+    foursquare = Foursquare::Base.new(:access_token => "ACCESS_TOKEN")
+    # You may also specify the API version here as described above
 
 ### Users
 
