@@ -35,6 +35,20 @@ module Foursquare
       @json["isMayor"]
     end
 
+    def comments
+      fetch if @json["comments"].nil? || (@json["comments"]["count"] > 0 && @json["comments"]["items"].length == 0)
+      @json["comments"]["items"].map { |comment| Foursquare::CheckinComment.new(@foursquare, comment) }
+    end
+
+    def overlaps
+      fetch unless @json["overlaps"]
+      if @json["overlaps"] && @json["overlaps"]["items"]
+        @json["overlaps"]["items"].map { |checkin| Foursquare::Checkin.new(@foursquare, checkin) }
+      else
+        []
+      end
+    end
+
     def timezone
       @json["timeZone"]
     end

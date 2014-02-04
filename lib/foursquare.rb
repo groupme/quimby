@@ -16,6 +16,7 @@ require "foursquare/tip"
 require "foursquare/photo"
 require "foursquare/location"
 require "foursquare/category"
+require "foursquare/checkin_comment"
 
 module Foursquare
   class Error < StandardError ; end
@@ -42,7 +43,7 @@ module Foursquare
     "not_authorized" => "Although authentication succeeded, the acting user is not allowed to see this information due to privacy restrictions.",
     "rate_limit_exceeded" => "Rate limit for this hour exceeded.",
     "deprecated" => "Something about this request is using deprecated functionality, or the response format may be about to change.",
-    "server_error" => "Server is currently experiencing issues. Check status.foursquare.com for udpates.",
+    "server_error" => "Server is currently experiencing issues. Check status.foursquare.com for updates.",
     "other" => "Some other type of error occurred."
   }
 end
