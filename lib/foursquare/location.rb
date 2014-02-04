@@ -31,7 +31,11 @@ module Foursquare
     def postal_code
       @json["postalCode"]
     end
-    
+
+    def cc
+      @json["cc"]
+    end
+
     def country
       @json["country"]
     end
