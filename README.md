@@ -9,7 +9,7 @@ It's a Foursquare API wrapper. It uses objects instead of hashes, and tries to b
 Install it as a gem (in your `Gemfile`) and its dependencies:
 
     gem "json"
-    gem "typhoeus"
+    gem "httparty"
     gem "quimby"
 
 ## Usage

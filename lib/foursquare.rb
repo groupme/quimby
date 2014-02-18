@@ -1,7 +1,7 @@
 $LOAD_PATH << File.dirname(__FILE__)
 
 require "rubygems"
-require "typhoeus"
+require "httparty"
 require "json"
 require "cgi"
 require "foursquare/base"
