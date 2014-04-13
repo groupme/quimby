@@ -7,7 +7,6 @@ require 'quimby'
 require 'pry'
 require 'pry-remote'
 require 'pry-nav'
-require 'plymouth'
 RSpec.configure do |config|
 end
 
