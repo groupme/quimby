@@ -32,9 +32,7 @@ module Foursquare
     def search_group(name, options)
       raise ArgumentError, "You must include :ll" unless options[:ll]
       response = @foursquare.get('venues/search', options)["groups"].detect { |group| group["type"] == name }
-      response ? response["items"].map do |json|
-        Foursquare::Venue.new(@foursquare, json)
-      end : []
+      response ? response["items"].map{ |json| Foursquare::Venue.new(@foursquare, json) } : []
     end
   end
 end
