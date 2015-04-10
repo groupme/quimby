@@ -6,7 +6,7 @@ module Foursquare
       @access_token  = args.fetch(:access_token, nil)
       @client_id     = args.fetch(:client_id, nil)
       @client_secret = args.fetch(:client_secret, nil)
-      @api_version   = args.fetch(:api_version, Date.new.strftime('%Y%m%d'))
+      @api_version   = args.fetch(:api_version, Date.today.strftime('%Y%m%d'))
 
       unless @access_token || (@client_id && @client_secret)
         raise ArgumentError, "You need to pass either an access_token or client_id and client_secret"
